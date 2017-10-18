@@ -22,6 +22,7 @@ function boardServiceFactory() {
 
   boardService.generateBoard = generateBoard;
   boardService.generateSpawnableCoordinates = generateSpawnableCoordinates;
+  boardService.movePlayer = movePlayer;
 
   return boardService;
 
@@ -45,6 +46,13 @@ function boardServiceFactory() {
     return board;
   }
 
+  function generateRandomCoordinates() {
+    return {
+      x: _.random(0, board.sizeX - 1),
+      y: _.random(0, board.sizeY - 1),
+    };
+  }
+
   function generateSpawnableCoordinates() {
     let coordinates = generateRandomCoordinates();
     while (!isWalkable(coordinates)) {
@@ -64,10 +72,8 @@ function boardServiceFactory() {
     return true;
   }
 
-  function generateRandomCoordinates() {
-    return {
-      x: _.random(0, board.sizeX - 1),
-      y: _.random(0, board.sizeY - 1),
-    };
+  function movePlayer(player, newCoordinates) {
+    board.boardSquares[player.coordinates.x][player.coordinates.y].player = null;
+    board.boardSquares[newCoordinates.x][newCoordinates.y].player = player;
   }
 }
