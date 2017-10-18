@@ -4,9 +4,11 @@ const _ = require('lodash');
 const terrains = [
   {
     name: 'Grass',
+    canWalk: true,
   },
   {
     name: 'Water',
+    canWalk: false,
   },
 ];
 
