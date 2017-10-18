@@ -54,6 +54,14 @@ app.set('port', port);
  const response = require('./response');
  app.use(response);
 
+
+/**
+ * Generating the map
+ */
+const mapService = require('./services/map');
+const map = mapService.generate(10, 10);
+console.log(map);
+
  /**
   * Starting the app
   */
