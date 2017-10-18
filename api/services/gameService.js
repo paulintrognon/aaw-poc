@@ -7,10 +7,12 @@ module.exports = gameServiceFactory();
 function gameServiceFactory() {
   const gameService = {};
 
+  gameService.init = init;
+
   return gameService;
 
   function init() {
-    boardService.generate();
+    boardService.generateBoard(10, 10);
   }
 
   function spanPlayer(player) {

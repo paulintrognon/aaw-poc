@@ -58,9 +58,8 @@ app.set('port', port);
 /**
  * Generating the map
  */
-const mapService = require('./services/map');
-const map = mapService.generate(10, 10);
-console.log(map);
+const gameService = require('./services/gameService');
+gameService.init();
 
  /**
   * Starting the app
