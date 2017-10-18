@@ -3,10 +3,12 @@
 const _ = require('lodash');
 const terrains = [
   {
+    type: 'grass',
     name: 'Grass',
     canWalk: true,
   },
   {
+    type: 'water',
     name: 'Water',
     canWalk: false,
   },
