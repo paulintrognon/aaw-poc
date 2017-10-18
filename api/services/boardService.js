@@ -34,6 +34,10 @@ function boardServiceFactory() {
       boardSquares.push([]);
       for (var y = 0; y < sizeY; y++) {
         boardSquares[x][y] = {
+          coordinates: {
+            x,
+            y,
+          },
           terrain: _.sample(availableTerrains),
         };
       }
@@ -73,7 +77,9 @@ function boardServiceFactory() {
   }
 
   function movePlayer(player, newCoordinates) {
-    board.boardSquares[player.coordinates.x][player.coordinates.y].player = null;
+    if (player.coordinates) {
+      board.boardSquares[player.coordinates.x][player.coordinates.y].player = null;
+    }
     board.boardSquares[newCoordinates.x][newCoordinates.y].player = player;
   }
 }
