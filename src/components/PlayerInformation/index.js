@@ -13,10 +13,19 @@ class PlayerInformation extends React.Component {
       return <CreatePlayerForm></CreatePlayerForm>;
     }
     return (
-      <h2>
-        {this.props.player.name}
-        [{this.props.player.id}]
-      </h2>
+      <div>
+        <h2>
+          {this.props.player.name} [{this.props.player.id}]
+        </h2>
+        <ul>
+          <li>
+            <b>Health</b>: {this.props.player.health}
+          </li>
+          <li>
+            <b>Coordinates</b>: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
+          </li>
+        </ul>
+      </div>
     );
   }
 }
