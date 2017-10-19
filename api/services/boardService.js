@@ -1,18 +1,25 @@
 'use strict';
 
 const _ = require('lodash');
-const availableTerrains = [
-  {
+const availableTerrains = {
+  grass: {
     type: 'grass',
-    name: 'Grass',
     canWalk: true,
   },
-  {
+  water: {
     type: 'water',
-    name: 'Water',
     canWalk: false,
   },
+  void: {
+    type: 'void',
+    canWalk: false,
+  },
+};
+const listOfTerrains = [
+  availableTerrains.grass,
+  availableTerrains.water,
 ];
+
 
 module.exports = {
   getPlayerBoard,
@@ -47,7 +54,7 @@ function generateBoard(sizeX, sizeY) {
           x,
           y,
         },
-        terrain: _.sample(availableTerrains),
+        terrain: _.sample(listOfTerrains),
       };
     }
   }
@@ -94,7 +101,7 @@ function movePlayer(player, newCoordinates) {
 
 function getSquare(x, y) {
   if (!board.boardSquares[y]) {
-    return;
+    return { terrain: availableTerrains.void };
   }
-  return board.boardSquares[y][x];
+  return board.boardSquares[y][x] || { terrain: availableTerrains.void };
 }
