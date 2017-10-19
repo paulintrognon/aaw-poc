@@ -11,4 +11,7 @@ router.get('/version', (req, res, next) => next({ version }));
 const gameRoutes = require('./gameRoutes');
 router.use('/game', gameRoutes);
 
+const boardRoutes = require('./boardRoutes');
+router.use('/board', boardRoutes);
+
 module.exports = router;

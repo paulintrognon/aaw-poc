@@ -23,6 +23,16 @@ function reducer(state = initialState, action) {
         },
       };
 
+    case 'BOARD_FETCH_FULFILLED':
+      return {
+        ...state,
+        board: {
+          ...state.player,
+          fetched: true,
+          board: action.payload,
+        },
+      };
+
     default:
       return state;
   }

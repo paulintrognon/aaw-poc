@@ -50,7 +50,7 @@ app.set('port', port);
 const tokenService = require('./services/tokenService');
 app.use(function (req, res, next) {
   if (req.cookies && req.cookies.aaw_token) {
-    req.playerId = tokenService.decode(req.cookies.aaw_token);
+    req.playerId = tokenService.decode(req.cookies.aaw_token).id;
   }
   next();
 });

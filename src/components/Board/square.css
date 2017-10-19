@@ -1,0 +1,18 @@
+.board-square {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  vertical-align: bottom;
+}
+
+.board-square.void {
+  background-color: #555;
+}
+
+.board-square.grass {
+  background-color: #71AA1D;
+}
+
+.board-square.water {
+  background-color: #004DC2;
+}

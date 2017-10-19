@@ -1,11 +1,13 @@
 'use strict';
 
+const _ = require('lodash');
 const crypto = require('crypto');
 
 const players = [];
 
 module.exports = {
   createPlayer,
+  findPlayer,
 };
 
 function createPlayer(information) {
@@ -16,4 +18,8 @@ function createPlayer(information) {
   };
   players.push(player);
   return player;
+}
+
+function findPlayer(playerId) {
+  return _.find(players, player => player.id === playerId);
 }

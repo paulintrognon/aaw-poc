@@ -9,3 +9,7 @@ export const api = axios.create({
 export function createNewPlayer(name) {
   return api.post('/game/player', { name });
 }
+
+export function fetchPlayerBoard() {
+  return api.get('/board/get');
+}
