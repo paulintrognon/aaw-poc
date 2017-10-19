@@ -12,7 +12,7 @@ class Square extends React.Component {
     }
     return (
       <div className={'board-square ' + square.terrain.type}>
-        {square.player ? <img src={soldierImg} /> : ''}
+        {square.player ? <img src={soldierImg} alt={square.player.name} title={square.player.name} /> : ''}
       </div>
     );
   }
