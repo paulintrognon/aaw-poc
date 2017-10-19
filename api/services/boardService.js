@@ -27,10 +27,10 @@ function getPlayerBoard(player) {
   const coordinates = player.coordinates;
   const boardSquares = [];
   for (let a = 0; a < 7; a++) {
-    const x = coordinates.x + a - 3;
+    const y = coordinates.y + a - 3;
     boardSquares.push([]);
     for (let b = 0; b < 7; b++) {
-      const y = coordinates.y + b - 3;
+      const x = coordinates.x + b - 3;
       boardSquares[a][b] = getSquare(x, y);
     }
   }
@@ -39,10 +39,10 @@ function getPlayerBoard(player) {
 
 function generateBoard(sizeX, sizeY) {
   const boardSquares = [];
-  for (let x = 0; x < sizeX; x++) {
+  for (let y = 0; y < sizeY; y++) {
     boardSquares.push([]);
-    for (let y = 0; y < sizeY; y++) {
-      boardSquares[x][y] = {
+    for (let x = 0; x < sizeX; x++) {
+      boardSquares[y][x] = {
         coordinates: {
           x,
           y,
@@ -75,7 +75,7 @@ function generateSpawnableCoordinates() {
 }
 
 function isWalkable(coordinates) {
-  const boardSquare = board.boardSquares[coordinates.x][coordinates.y];
+  const boardSquare = getSquare(coordinates.x, coordinates.y);
   if (!boardSquare.terrain.canWalk) {
     return false;
   }
@@ -87,14 +87,14 @@ function isWalkable(coordinates) {
 
 function movePlayer(player, newCoordinates) {
   if (player.coordinates) {
-    board.boardSquares[player.coordinates.x][player.coordinates.y].player = null;
+    board.boardSquares[player.coordinates.y][player.coordinates.x].player = null;
   }
-  board.boardSquares[newCoordinates.x][newCoordinates.y].player = player;
+  board.boardSquares[newCoordinates.y][newCoordinates.x].player = player;
 }
 
 function getSquare(x, y) {
-  if (!board.boardSquares[x]) {
+  if (!board.boardSquares[y]) {
     return;
   }
-  return board.boardSquares[x][y];
+  return board.boardSquares[y][x];
 }
