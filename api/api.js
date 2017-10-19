@@ -14,6 +14,7 @@ if (!fs.existsSync(configPath)) {
  * Loading dependencies
  */
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const config = require('config');
 const cors = require('cors');
 const express = require('express');
@@ -25,13 +26,15 @@ const logger = require('./logger');
  */
 const app = express();
 app.use(bodyParser.json()); // for parsing application/json
+app.use(cookieParser());
 
 /**
  * CORS options
  */
 const corsOptions = {
   origin: config.host,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  credentials: true,
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 app.use(cors(corsOptions));
 
@@ -42,18 +45,27 @@ const port = (config.api && config.api.port) || 3001;
 app.set('port', port);
 
 /**
- * Connecting to MySQL
- * /!\ We need to connect to mysql first thing in order to have sequelize initialized
+ * Decode the token
  */
- const routes = require('./routes');
- app.use('/', routes);
+const tokenService = require('./services/tokenService');
+app.use(function (req, res, next) {
+  if (req.cookies && req.cookies.aaw_token) {
+    req.playerId = tokenService.decode(req.cookies.aaw_token);
+  }
+  next();
+});
+
+/**
+ * Adding the routes
+ */
+const routes = require('./routes');
+app.use('/', routes);
 
  /**
   * Adding the response middleware
   */
  const response = require('./response');
  app.use(response);
-
 
 /**
  * Generating the map

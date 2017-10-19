@@ -5,6 +5,7 @@ const bluebird = require('bluebird');
 
 const gameService = require('../services/gameService');
 const playersService = require('../services/playersService');
+const tokenService = require('../services/tokenService');
 
 module.exports = {
   createPlayer,
@@ -19,7 +20,11 @@ function createPlayer(req, res) {
       message: 'Cannot create player : missing `name` property',
     });
   }
+
   const player = playersService.createPlayer({ name });
   gameService.spawnPlayer(player);
-  return { player };
+
+  const token = tokenService.create(player);
+
+  return { player, token };
 }
