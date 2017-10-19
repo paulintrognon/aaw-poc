@@ -63,11 +63,17 @@ gameService.init();
 const player = { name: 'Jack' };
 gameService.spawnPlayer(player);
 
- /**
-  * Starting the app
-  */
- const server = http.createServer(app);
- server.listen(port, () => {
-   const address = server.address();
-   logger.info(`API up and running on ${address.address}:${address.port}`);
- });
+/**
+ * Starting the app
+ */
+const server = http.createServer(app);
+
+const io = require('socket.io').listen(server);
+io.origins(config.host);
+
+require('./actions')(io);
+
+server.listen(port, () => {
+  const address = server.address();
+  logger.info(`API up and running on ${address.address}:${address.port}`);
+});
