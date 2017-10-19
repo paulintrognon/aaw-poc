@@ -1,11 +1,13 @@
 import React from 'react';
 
+import PlayerInformation from '../../components/PlayerInformation';
+
 class Home extends React.Component {
   render() {
     return (
-      <p>
-        Hello world!
-      </p>
+      <div>
+        <PlayerInformation></PlayerInformation>
+      </div>
     );
   }
 }
