@@ -5,11 +5,14 @@ import './square.css';
 
 class Square extends React.Component {
   render() {
-    if (!this.props.square) {
+    const square = this.props.square;
+    if (!square) {
       return <div className="board-square void"></div>;
     }
     return (
-      <div className={'board-square ' + this.props.square.terrain.type}></div>
+      <div className={'board-square ' + square.terrain.type}>
+        {square.player ? square.player.name : ''}
+      </div>
     );
   }
 }

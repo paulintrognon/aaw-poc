@@ -72,8 +72,6 @@ app.use('/', routes);
  */
 const gameService = require('./services/gameService');
 gameService.init();
-const player = { name: 'Jack' };
-gameService.spawnPlayer(player);
 
 /**
  * Starting the app
