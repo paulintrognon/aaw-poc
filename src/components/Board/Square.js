@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './square.css';
+import soldierImg from './soldier.gif';
 
 class Square extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class Square extends React.Component {
     }
     return (
       <div className={'board-square ' + square.terrain.type}>
-        {square.player ? square.player.name : ''}
+        {square.player ? <img src={soldierImg} /> : ''}
       </div>
     );
   }

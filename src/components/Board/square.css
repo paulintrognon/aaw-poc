@@ -1,8 +1,12 @@
 .board-square {
   display: inline-block;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
+  line-height: 100px;
+  text-align: center;
   vertical-align: bottom;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .board-square.void {
