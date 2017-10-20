@@ -14,4 +14,7 @@ router.use('/game', gameRoutes);
 const boardRoutes = require('./boardRoutes');
 router.use('/board', boardRoutes);
 
+const playersRoutes = require('./playersRoutes');
+router.use('/players', playersRoutes);
+
 module.exports = router;

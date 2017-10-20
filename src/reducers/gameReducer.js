@@ -27,9 +27,23 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         board: {
-          ...state.player,
+          ...state.board,
           fetched: true,
           board: action.payload,
+        },
+      };
+
+    case 'MOVE_OWN_PLAYER_FULFILLED':
+      return {
+        ...state,
+        player: {
+          ...state.player,
+          player: action.payload.player,
+        },
+        board: {
+          ...state.player,
+          fetched: true,
+          board: action.payload.board,
         },
       };
 

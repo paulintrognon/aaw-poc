@@ -1,4 +1,4 @@
-import { createNewPlayer, fetchPlayerBoard } from '../services/api';
+import { createNewPlayer, fetchPlayerBoard, moveOwnPlayer } from '../services/api';
 
 export function createNewPlayerAction(name) {
   return (dispatch) => {
@@ -10,7 +10,7 @@ export function createNewPlayerAction(name) {
       }, err => {
         dispatch({type: 'NEW_PLAYER_FETCH_ERROR', payload: err.response.data});
       });
-  }
+  };
 }
 
 export function fetchBoardAction() {
@@ -19,5 +19,14 @@ export function fetchBoardAction() {
       .then(res => {
         dispatch({type: 'BOARD_FETCH_FULFILLED', payload: res.data.board});
       });
-  }
+  };
+}
+
+export function moveOwnPlayerAction(coordinates) {
+  return (dispatch) => {
+    moveOwnPlayer(coordinates)
+      .then(res => {
+        dispatch({type: 'MOVE_OWN_PLAYER_FULFILLED', payload: res.data});
+      });
+  };
 }

@@ -13,3 +13,7 @@ export function createNewPlayer(name) {
 export function fetchPlayerBoard() {
   return api.get('/board/get');
 }
+
+export function moveOwnPlayer(coordinates) {
+  return api.post('/players/own/move', { coordinates });
+}
