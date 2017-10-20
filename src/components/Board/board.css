@@ -1,0 +1,5 @@
+.board-container {
+  display: inline-block;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+}

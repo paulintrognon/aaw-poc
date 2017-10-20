@@ -7,8 +7,15 @@ import soldierImg from './soldier.gif';
 class Square extends React.Component {
   render() {
     const square = this.props.square;
+    const classes = [
+      'board-square',
+      square.terrain.type,
+    ];
+    if (square.isWalkable) {
+      classes.push('walkable');
+    }
     return (
-      <div className={'board-square ' + square.terrain.type}>
+      <div className={classes.join(' ')}>
         {square.player ? <img src={soldierImg} alt={square.player.name} title={square.player.name} /> : ''}
       </div>
     );

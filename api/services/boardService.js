@@ -32,6 +32,8 @@ let board;
 
 function getPlayerBoard(player) {
   const coordinates = player.coordinates;
+
+  // Create player board
   const boardSquares = [];
   for (let a = 0; a < 7; a++) {
     const y = coordinates.y + a - 3;
@@ -39,6 +41,13 @@ function getPlayerBoard(player) {
     for (let b = 0; b < 7; b++) {
       const x = coordinates.x + b - 3;
       boardSquares[a][b] = getSquare(x, y);
+    }
+  }
+
+  // Mark walkable squares
+  for (var x = 2; x <= 4; x++) {
+    for (var y = 2; y <= 4; y++) {
+      boardSquares[y][x].isWalkable = isWalkable(boardSquares[y][x]);
     }
   }
   return boardSquares;
@@ -75,18 +84,17 @@ function generateRandomCoordinates() {
 
 function generateSpawnableCoordinates() {
   let coordinates = generateRandomCoordinates();
-  while (!isWalkable(coordinates)) {
+  while (!isWalkable(getSquare(coordinates.x, coordinates.y))) {
     coordinates = generateRandomCoordinates();
   }
   return coordinates;
 }
 
-function isWalkable(coordinates) {
-  const boardSquare = getSquare(coordinates.x, coordinates.y);
-  if (!boardSquare.terrain.canWalk) {
+function isWalkable(square) {
+  if (!square.terrain.canWalk) {
     return false;
   }
-  if (boardSquare.player) {
+  if (square.player) {
     return false;
   }
   return true;

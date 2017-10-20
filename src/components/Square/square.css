@@ -2,11 +2,15 @@
   display: inline-block;
   width: 70px;
   height: 70px;
-  line-height: 100px;
+  line-height: 70px;
   text-align: center;
   vertical-align: bottom;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+}
+
+.board-square.walkable {
+  cursor: pointer;
 }
 
 .board-square.void {
