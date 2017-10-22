@@ -2,23 +2,32 @@
 
 const _ = require('lodash');
 
-const boardService = require('./boardService');
 const playerService = require('./playerService');
 
 const players = [];
 
 module.exports = {
   canPlayer1SeePlayer2,
+  getAllPlayersInSightOfPlayer,
   createPlayer,
   findPlayer,
 };
 
-function canPlayer1SeePlayer2(player1, player2) {
-  const player1Board = boardService.getPlayerBoard(player1);
-  return player1Board.some(row => {
-    return row.some(square => {
-      return square.player && (square.player.id === player2.id);
-    });
+function canPlayer1SeePlayer2(player1, player2, extraRange) {
+  const totalSight = player1.sight + (extraRange || 0);
+
+  return (player2.coordinates.x >= player1.coordinates.x - totalSight)
+    && (player2.coordinates.x <= player1.coordinates.x + totalSight)
+    && (player2.coordinates.y >= player1.coordinates.y - totalSight)
+    && (player2.coordinates.y <= player1.coordinates.y + totalSight);
+}
+
+function getAllPlayersInSightOfPlayer(player, extraRange) {
+  return players.filter(playerToTest => {
+    if (playerToTest.id === player.id) {
+      return false;
+    }
+    return canPlayer1SeePlayer2(player, playerToTest, extraRange);
   });
 }
 
