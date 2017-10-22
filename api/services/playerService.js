@@ -13,7 +13,17 @@ function createPlayer(specs) {
     name: specs.name,
     health: specs.health || 100,
     coordinates: specs.coordinates || {},
+    sight: 3,
   };
+  const publicProperties = [
+    'id',
+    'name',
+    'coordinates',
+  ];
+  const privateProperties = publicProperties.concat([
+    'health',
+    'sight',
+  ]);
 
   player.getPublicProperties = getPublicProperties;
   player.getPrivateProperties = getPrivateProperties;
@@ -26,11 +36,11 @@ function createPlayer(specs) {
   // ------------------------------------------------------
 
   function getPublicProperties() {
-    return _.pick(player, ['id', 'name', 'coordinates']);
+    return _.pick(player, publicProperties);
   }
 
   function getPrivateProperties() {
-    return _.pick(player, ['id', 'name', 'health', 'coordinates']);
+    return _.pick(player, privateProperties);
   }
 
   function isOnBoard() {

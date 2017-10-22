@@ -35,11 +35,11 @@ function getPlayerBoard(player) {
 
   // Create player board
   const boardSquares = [];
-  for (let a = 0; a < 7; a++) {
-    const y = coordinates.y + a - 3;
+  for (let a = 0; a < player.sight * 2 + 1; a++) {
+    const y = coordinates.y + a - player.sight;
     boardSquares.push([]);
-    for (let b = 0; b < 7; b++) {
-      const x = coordinates.x + b - 3;
+    for (let b = 0; b < player.sight * 2 + 1; b++) {
+      const x = coordinates.x + b - player.sight;
       const square = _.clone(getSquare(x, y));
       if (square.player) {
         square.player = square.player.getPublicProperties();
@@ -49,8 +49,8 @@ function getPlayerBoard(player) {
   }
 
   // Mark walkable squares
-  for (var x = 2; x <= 4; x++) {
-    for (var y = 2; y <= 4; y++) {
+  for (var x = player.sight - 1; x <= player.sight + 1; x++) {
+    for (var y = player.sight - 1; y <= player.sight + 1; y++) {
       boardSquares[y][x].isWalkable = isWalkable(boardSquares[y][x]);
     }
   }
