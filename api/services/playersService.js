@@ -1,9 +1,9 @@
 'use strict';
 
 const _ = require('lodash');
-const crypto = require('crypto');
 
 const boardService = require('./boardService');
+const playerService = require('./playerService');
 
 const players = [];
 
@@ -23,11 +23,7 @@ function canPlayer1SeePlayer2(player1, player2) {
 }
 
 function createPlayer(information) {
-  const player = {
-    id: crypto.randomBytes(2).toString('hex'),
-    name: information.name,
-    health: 100,
-  };
+  const player = playerService.createPlayer(information);
   players.push(player);
   return player;
 }
