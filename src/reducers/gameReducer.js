@@ -7,7 +7,7 @@ const initialState = {
   },
   board: {
     fetched: false,
-    player: null,
+    board: null,
   },
 };
 
@@ -41,7 +41,7 @@ function reducer(state = initialState, action) {
           player: action.payload.player,
         },
         board: {
-          ...state.player,
+          ...state.board,
           fetched: true,
           board: action.payload.board,
         },

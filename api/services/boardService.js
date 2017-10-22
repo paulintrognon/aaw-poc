@@ -113,7 +113,14 @@ function movePlayer(player, newCoordinates) {
 
 function getSquare(x, y) {
   if (!board.boardSquares[y]) {
-    return { terrain: availableTerrains.void };
+    return generateVoidSquare(x, y);
   }
-  return board.boardSquares[y][x] || { terrain: availableTerrains.void };
+  return board.boardSquares[y][x] || generateVoidSquare(x, y);
+}
+
+function generateVoidSquare(x, y) {
+  return {
+    terrain: availableTerrains.void,
+    coordinates: { x, y },
+  };
 }
