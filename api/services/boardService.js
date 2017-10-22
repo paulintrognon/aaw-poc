@@ -17,6 +17,8 @@ const availableTerrains = {
 };
 const listOfTerrains = [
   availableTerrains.grass,
+  availableTerrains.grass,
+  availableTerrains.grass,
   availableTerrains.water,
 ];
 
