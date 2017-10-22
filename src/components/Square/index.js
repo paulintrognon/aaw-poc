@@ -24,7 +24,7 @@ class Square extends React.Component {
       classes.push('walkable');
     }
     return (
-      <div className={classes.join(' ')} onClick={this.handleOnClick}>
+      <div className={classes.join(' ')} onClick={this.handleOnClick} title={square.isWalkable ? 'Click to move' : ''}>
         {square.player ? renderPlayer(square.player) : ''}
       </div>
     );
@@ -34,14 +34,12 @@ export default connect()(Square);
 
 function renderPlayer(player) {
   return (
-    <div className="player">
+    <div className="player" title={player.name}>
       <p className="player-image-container">
-        <img src={soldierImg} alt={player.name} title={player.name} />
+        <img src={soldierImg} alt={player.name} />
       </p>
       <p className="player-title-container">
-        <span className="player-title">
-          {player.name}
-        </span>
+        {player.name}
       </p>
     </div>
   );

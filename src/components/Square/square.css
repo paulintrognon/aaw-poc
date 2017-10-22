@@ -6,6 +6,7 @@
   vertical-align: bottom;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+  position: relative;
 }
 
 .board-square.walkable {
@@ -24,11 +25,6 @@
   background-color: #004DC2;
 }
 
-.board-square .player {
-  position: relative;
-  height: 100%;
-}
-
 .board-square .player .player-image-container {
   position: absolute;
   top: 18px;
@@ -37,14 +33,17 @@
 
 .board-square .player .player-title-container {
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
   width: 100%;
-}
-
-.board-square .player .player-title {
   font-size: 0.8rem;
   color: #000;
   background-color: #FFF;
   padding: 3px 10px;
-  border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+
+.board-square .player .player-title {
 }
