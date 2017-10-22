@@ -26,5 +26,8 @@ function createPlayer(req, res) {
 
   const token = tokenService.create(player);
 
-  return { player, token };
+  return {
+    token,
+    player: player.getPrivateProperties(),
+  };
 }

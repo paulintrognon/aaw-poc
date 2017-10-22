@@ -34,6 +34,6 @@ function moveOwnPlayer(req, res) {
   const board = boardService.getPlayerBoard(player);
   return {
     board,
-    player,
+    player: player.getPrivateProperties(),
   };
 }

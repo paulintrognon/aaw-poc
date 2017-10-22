@@ -40,7 +40,11 @@ function getPlayerBoard(player) {
     boardSquares.push([]);
     for (let b = 0; b < 7; b++) {
       const x = coordinates.x + b - 3;
-      boardSquares[a][b] = _.clone(getSquare(x, y));
+      const square = _.clone(getSquare(x, y));
+      if (square.player) {
+        square.player = square.player.getPublicProperties();
+      }
+      boardSquares[a][b] = square;
     }
   }
 

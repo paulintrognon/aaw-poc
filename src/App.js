@@ -9,7 +9,6 @@ import Home from './pages/Home';
 import store from './store.js';
 
 import history from './services/history';
-import './services/socket';
 
 class App extends Component {
   render() {

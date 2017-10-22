@@ -1,4 +1,5 @@
 import { createNewPlayer, fetchPlayerBoard, moveOwnPlayer } from '../services/api';
+import socketService from '../services/socket';
 
 export function createNewPlayerAction(name) {
   return (dispatch) => {
@@ -6,6 +7,7 @@ export function createNewPlayerAction(name) {
       .then(res => {
         dispatch({type: 'NEW_PLAYER_FETCH_FULFILLED', payload: res.data.player});
         document.cookie = `aaw_token=${res.data.token}`;
+        socketService.open(res.data.player);
         dispatch(fetchBoardAction())
       }, err => {
         dispatch({type: 'NEW_PLAYER_FETCH_ERROR', payload: err.response.data});

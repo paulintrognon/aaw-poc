@@ -16,22 +16,32 @@ function createPlayer(specs) {
   };
 
   player.getPublicProperties = getPublicProperties;
+  player.getPrivateProperties = getPrivateProperties;
   player.isOnBoard = isOnBoard;
-  player.move = move;
+  player.loadSocket = loadSocket;
+  player.updateCoordinates = updateCoordinates;
 
   return player;
 
   // ------------------------------------------------------
 
   function getPublicProperties() {
-    return _.map(player, ['id', 'name', 'coordinates']);
+    return _.pick(player, ['id', 'name', 'coordinates']);
+  }
+
+  function getPrivateProperties() {
+    return _.pick(player, ['id', 'name', 'health', 'coordinates']);
   }
 
   function isOnBoard() {
     return player.coordinates.x !== undefined && player.coordinates.y !== undefined;
   }
 
-  function move(newCoordinates) {
+  function loadSocket(socket) {
+    player.socket = socket;
+  }
+
+  function updateCoordinates(newCoordinates) {
     player.coordinates.x = newCoordinates.x;
     player.coordinates.y = newCoordinates.y;
   }

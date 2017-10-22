@@ -19,5 +19,5 @@ function spawnPlayer(player) {
 
 function movePlayerToCoordinates(player, newCoordinates) {
   boardService.movePlayer(player, newCoordinates);
-  player.move(newCoordinates);
+  player.updateCoordinates(newCoordinates);
 }

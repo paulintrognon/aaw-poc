@@ -1,5 +1,13 @@
 import openSocket from 'socket.io-client';
 
-const socket = openSocket('http://localhost:3001');
+let socket;
 
-export default socket;
+export default {
+  socket,
+  open,
+};
+
+function open(player) {
+  socket = openSocket('http://localhost:3001');
+  socket.emit('PLAYER_SPAWN', player.id);
+}
