@@ -101,7 +101,7 @@ function isWalkable(square) {
 }
 
 function movePlayer(player, newCoordinates) {
-  if (player.coordinates) {
+  if (player.isOnBoard()) {
     board.boardSquares[player.coordinates.y][player.coordinates.x].player = null;
   }
   board.boardSquares[newCoordinates.y][newCoordinates.x].player = player;

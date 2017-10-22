@@ -12,8 +12,12 @@ function createPlayer(specs) {
     id: specs.id || generateId(),
     name: specs.name,
     health: specs.health || 100,
-    coordinates: specs.coordinates,
+    coordinates: specs.coordinates || {},
   };
+
+  player.getPublicProperties = getPublicProperties;
+  player.isOnBoard = isOnBoard;
+  player.move = move;
 
   return player;
 
@@ -21,6 +25,15 @@ function createPlayer(specs) {
 
   function getPublicProperties() {
     return _.map(player, ['id', 'name', 'coordinates']);
+  }
+
+  function isOnBoard() {
+    return player.coordinates.x !== undefined && player.coordinates.y !== undefined;
+  }
+
+  function move(newCoordinates) {
+    player.coordinates.x = newCoordinates.x;
+    player.coordinates.y = newCoordinates.y;
   }
 }
 
