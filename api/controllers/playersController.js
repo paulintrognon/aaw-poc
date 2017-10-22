@@ -30,7 +30,7 @@ function moveOwnPlayer(req, res) {
     });
   }
 
-  gameService.movePlayerToCoordinates(player, coordinates)
+  gameService.movePlayerToCoordinates(player, coordinates);
   const board = boardService.getPlayerBoard(player);
   return {
     board,
