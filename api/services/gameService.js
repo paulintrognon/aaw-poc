@@ -1,6 +1,9 @@
 'use strict';
 
+const _ = require('lodash');
 const boardService = require('./boardService');
+const playersService = require('./playersService');
+const actions = require('../actions');
 
 module.exports = {
   init,
@@ -18,6 +21,10 @@ function spawnPlayer(player) {
 }
 
 function movePlayerToCoordinates(player, newCoordinates) {
+  const oldPlayer = _.cloneDeep(player);
+
   boardService.movePlayer(player, newCoordinates);
-  player.updateCoordinates(newCoordinates);
+  player.setCoordinates(newCoordinates);
+
+  actions.informPlayersOfPlayerMovement(oldPlayer, player);
 }

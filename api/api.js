@@ -81,7 +81,7 @@ const server = http.createServer(app);
 const io = require('socket.io').listen(server);
 io.origins(config.host);
 
-require('./actions')(io);
+require('./actions').init(io);
 
 server.listen(port, () => {
   const address = server.address();

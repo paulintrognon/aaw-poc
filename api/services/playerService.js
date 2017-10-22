@@ -29,7 +29,8 @@ function createPlayer(specs) {
   player.getPrivateProperties = getPrivateProperties;
   player.isOnBoard = isOnBoard;
   player.loadSocket = loadSocket;
-  player.updateCoordinates = updateCoordinates;
+  player.getCoordinates = getCoordinates;
+  player.setCoordinates = setCoordinates;
 
   return player;
 
@@ -47,11 +48,19 @@ function createPlayer(specs) {
     return player.coordinates.x !== undefined && player.coordinates.y !== undefined;
   }
 
-  function loadSocket(socket) {
-    player.socket = socket;
+  function loadSocket(socketId) {
+    player.socketId = socketId;
+    console.log(player.socketId);
   }
 
-  function updateCoordinates(newCoordinates) {
+  function getCoordinates() {
+    return {
+      x: player.coordinates.x,
+      y: player.coordinates.y,
+    }
+  }
+
+  function setCoordinates(newCoordinates) {
     player.coordinates.x = newCoordinates.x;
     player.coordinates.y = newCoordinates.y;
   }
