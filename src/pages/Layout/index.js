@@ -1,5 +1,8 @@
 import React from 'react';
 
+import './reset.css';
+import './layout.css';
+
 export default class Layout extends React.Component {
   render() {
     return (

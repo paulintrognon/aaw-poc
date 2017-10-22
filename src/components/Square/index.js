@@ -25,9 +25,24 @@ class Square extends React.Component {
     }
     return (
       <div className={classes.join(' ')} onClick={this.handleOnClick}>
-        {square.player ? <img src={soldierImg} alt={square.player.name} title={square.player.name} /> : ''}
+        {square.player ? renderPlayer(square.player) : ''}
       </div>
     );
   }
 }
 export default connect()(Square);
+
+function renderPlayer(player) {
+  return (
+    <div className="player">
+      <p className="player-image-container">
+        <img src={soldierImg} alt={player.name} title={player.name} />
+      </p>
+      <p className="player-title-container">
+        <span className="player-title">
+          {player.name}
+        </span>
+      </p>
+    </div>
+  );
+}
