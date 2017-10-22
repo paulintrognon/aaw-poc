@@ -10,6 +10,10 @@ export function createNewPlayer(name) {
   return api.post('/game/player', { name });
 }
 
+export function fetchPlayerFromToken() {
+  return api.get('/game/player');
+}
+
 export function fetchPlayerBoard() {
   return api.get('/board/get');
 }

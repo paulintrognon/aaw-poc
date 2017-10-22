@@ -9,6 +9,7 @@ const tokenService = require('../services/tokenService');
 
 module.exports = {
   createPlayer,
+  fetchPlayer,
 };
 
 function createPlayer(req, res) {
@@ -28,6 +29,21 @@ function createPlayer(req, res) {
 
   return {
     token,
+    player: player.getPrivateProperties(),
+  };
+}
+
+function fetchPlayer(req, res) {
+  const player = playersService.findPlayer(req.playerId);
+  if (!player) {
+    return bluebird.reject({
+      status: 404,
+      name: 'player-not-found',
+      message: 'Cannot fetch player : player not found',
+    });
+  }
+
+  return {
     player: player.getPrivateProperties(),
   };
 }

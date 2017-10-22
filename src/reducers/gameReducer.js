@@ -2,7 +2,7 @@ export default reducer;
 
 const initialState = {
   player: {
-    created: false,
+    fetched: false,
     player: null,
   },
   board: {
@@ -13,12 +13,12 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'NEW_PLAYER_FETCH_FULFILLED':
+    case 'PLAYER_FETCH_FULFILLED':
       return {
         ...state,
         player: {
           ...state.player,
-          created: true,
+          fetched: true,
           player: action.payload,
         },
       };

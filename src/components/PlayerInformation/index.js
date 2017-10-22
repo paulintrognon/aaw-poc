@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { loadExistingPlayer } from '../../actions/gameActions';
+
+import { getCookie } from '../../services/cookies';
 
 import CreatePlayerForm from './CreatePlayerForm';
 
@@ -9,9 +12,15 @@ function mapStoreToProps(store) {
   return store.game.player;
 }
 class PlayerInformation extends React.Component {
+  componentWillMount() {
+    const token = getCookie('aaw_token');
+    if (token) {
+      this.props.dispatch(loadExistingPlayer());
+    }
+  }
 
   render() {
-    if (!this.props.created) {
+    if (!this.props.fetched) {
       return <CreatePlayerForm></CreatePlayerForm>;
     }
     return (

@@ -1,16 +1,34 @@
-import { createNewPlayer, fetchPlayerBoard, moveOwnPlayer } from '../services/api';
+import { createNewPlayer, fetchPlayerFromToken, fetchPlayerBoard, moveOwnPlayer } from '../services/api';
 import socketService from '../services/socket';
+import cookieService from '../services/cookies';
 
 export function createNewPlayerAction(name) {
   return (dispatch) => {
     createNewPlayer(name)
       .then(res => {
-        dispatch({type: 'NEW_PLAYER_FETCH_FULFILLED', payload: res.data.player});
-        document.cookie = `aaw_token=${res.data.token}`;
+        dispatch({type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player});
+        cookieService.setCookie('aaw_token', res.data.token);
         socketService.open(res.data.player);
         dispatch(fetchBoardAction())
       }, err => {
-        dispatch({type: 'NEW_PLAYER_FETCH_ERROR', payload: err.response.data});
+        dispatch({type: 'PLAYER_FETCH_ERROR', payload: err.response.data});
+      });
+  };
+}
+
+export function loadExistingPlayer() {
+  return (dispatch) => {
+    fetchPlayerFromToken()
+      .then(res => {
+        dispatch({type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player});
+        socketService.open(res.data.player);
+        dispatch(fetchBoardAction())
+      }, err => {
+        if (err.response.data.name === 'player-not-found') {
+          cookieService.clearCookie('aaw_token');
+        } else {
+          dispatch({type: 'PLAYER_FETCH_ERROR', payload: err.response.data});
+        }
       });
   };
 }
