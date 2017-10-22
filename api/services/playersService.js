@@ -24,9 +24,6 @@ function canPlayer1SeePlayer2(player1, player2, extraRange) {
 
 function getAllPlayersInSightOfPlayer(player, extraRange) {
   return players.filter(playerToTest => {
-    if (playerToTest.id === player.id) {
-      return false;
-    }
     return canPlayer1SeePlayer2(player, playerToTest, extraRange);
   });
 }

@@ -3,7 +3,9 @@
 const playersService = require('../services/playersService');
 
 let io = null;
-const sockets = {};
+const sockets = [
+
+];
 
 module.exports = {
   init,
@@ -18,7 +20,10 @@ function init(newIo) {
       if (!player) {
         return;
       }
-      sockets[player.id] = socket.id;
+      sockets.push({
+        id: socket.id,
+        playerId: player.id,
+      });
       console.log(`User ${userId} connected`, sockets);
     });
     socket.on('disconnect', function() {
@@ -38,11 +43,20 @@ function informPlayersOfPlayerMovement(oldPlayer, newPlayer) {
     if (informedPlayers[player.id]) {
       return;
     }
-    getPlayerSocket(player).emit('REFRESH_BOARD');
+    const payload = {};
+    if (newPlayer.id === player.id) {
+      payload.isMe = true;
+      payload.coordinates = newPlayer.coordinates;
+    }
+    emitToPlayer(player, 'REFRESH_BOARD', payload);
     informedPlayers[player.id] = true;
   });
 }
 
-function getPlayerSocket(player) {
-  return io.to(sockets[player.id]);
+function emitToPlayer(player, type, payload) {
+  sockets.forEach(socket => {
+    if (socket.playerId === player.id) {
+      io.to(socket.id).emit(type, payload);
+    }
+  });
 }

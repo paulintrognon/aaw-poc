@@ -19,7 +19,12 @@ function reducer(state = initialState, action) {
         player: {
           ...state.player,
           fetched: true,
-          player: action.payload,
+          player: action.payload.player,
+        },
+        board: {
+          ...state.board,
+          fetched: true,
+          board: action.payload.board,
         },
       };
 

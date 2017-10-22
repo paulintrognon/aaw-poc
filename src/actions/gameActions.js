@@ -6,10 +6,9 @@ export function createNewPlayerAction(name) {
   return (dispatch) => {
     createNewPlayer(name)
       .then(res => {
-        dispatch({type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player});
+        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data });
         cookieService.setCookie('aaw_token', res.data.token);
         socketService.open(res.data.player);
-        dispatch(fetchBoardAction())
       }, err => {
         dispatch({type: 'PLAYER_FETCH_ERROR', payload: err.response.data});
       });
@@ -20,9 +19,23 @@ export function loadExistingPlayer() {
   return (dispatch) => {
     fetchPlayerFromToken()
       .then(res => {
-        dispatch({type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player});
+        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data });
         socketService.open(res.data.player);
-        dispatch(fetchBoardAction())
+      }, err => {
+        if (err.response.data.name === 'player-not-found') {
+          cookieService.clearCookie('aaw_token');
+        } else {
+          dispatch({type: 'PLAYER_FETCH_ERROR', payload: err.response.data});
+        }
+      });
+  };
+}
+
+export function refreshPlayer() {
+  return (dispatch) => {
+    fetchPlayerFromToken()
+      .then(res => {
+        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data });
       }, err => {
         if (err.response.data.name === 'player-not-found') {
           cookieService.clearCookie('aaw_token');

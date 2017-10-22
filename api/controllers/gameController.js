@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const bluebird = require('bluebird');
 
+const boardService = require('../services/boardService');
 const gameService = require('../services/gameService');
 const playersService = require('../services/playersService');
 const tokenService = require('../services/tokenService');
@@ -30,6 +31,7 @@ function createPlayer(req, res) {
   return {
     token,
     player: player.getPrivateProperties(),
+    board: boardService.getPlayerBoard(player),
   };
 }
 
@@ -45,5 +47,6 @@ function fetchPlayer(req, res) {
 
   return {
     player: player.getPrivateProperties(),
+    board: boardService.getPlayerBoard(player),
   };
 }
