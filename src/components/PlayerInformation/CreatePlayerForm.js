@@ -24,7 +24,6 @@ class PlayerInformation extends React.Component {
         <input type="text" placeholder="Enter your soldier name" onChange={this.handleNameChange} />
         <input type="submit" value="Start!" />
       </form>
-
     );
   }
 }
