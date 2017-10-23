@@ -9,8 +9,13 @@
   position: relative;
 }
 
+
 .board-square.walkable {
   cursor: pointer;
+}
+
+.board-square.walkable:hover {
+  opacity: 0.8;
 }
 
 .board-square.void {
