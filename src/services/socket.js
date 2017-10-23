@@ -21,7 +21,7 @@ function open(player) {
         if (player.coordinates.x !== payload.coordinates.x || player.coordinates.y !== payload.coordinates.y) {
           store.dispatch(refreshPlayer());
         }
-      }, 1000);
+      }, 300);
     } else {
       store.dispatch(fetchBoardAction());
     }
