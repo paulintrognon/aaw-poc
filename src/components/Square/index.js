@@ -28,6 +28,9 @@ class Square extends React.Component {
     }
     if (square.player) {
       classes.push('has-player');
+      if (square.player.isInRange) {
+        classes.push('player-in-range');
+      }
     }
     return (
       <div className={classes.join(' ')} onClick={this.handleOnClick} title={square.isWalkable ? 'Click to move' : ''}>
@@ -62,7 +65,7 @@ function renderPlayerInformationBox(player) {
         x{player.coordinates.x} / y{player.coordinates.y}
       </p>
       <p>
-        <button>Attaquer</button>
+        <button disabled={!player.isInRange}>Attaquer</button>
       </p>
     </div>
   );

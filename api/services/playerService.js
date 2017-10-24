@@ -14,11 +14,18 @@ function createPlayer(specs) {
     health: specs.health || 100,
     coordinates: specs.coordinates || {},
     sight: 3,
+    weapon: {
+      name: 'AK-47',
+      range: 2,
+      shots: 3,
+      damages: { min: 10, max: 20 },
+    },
   };
   const publicProperties = [
     'id',
     'name',
     'coordinates',
+    'weapon',
   ];
   const privateProperties = publicProperties.concat([
     'health',

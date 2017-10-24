@@ -22,6 +22,7 @@ const listOfTerrains = [
   availableTerrains.water,
 ];
 
+const playersService = require('./playersService');
 
 module.exports = {
   getPlayerBoard,
@@ -45,6 +46,7 @@ function getPlayerBoard(player) {
       const square = _.clone(getSquare(x, y));
       if (square.player) {
         square.player = square.player.getPublicProperties();
+        square.player.isInRange = playersService.canPlayer1RangePlayer2(player, square.player);
       }
       boardSquares[a][b] = square;
     }
