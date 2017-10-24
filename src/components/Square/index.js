@@ -12,6 +12,9 @@ class Square extends React.Component {
     if (this.props.square.isWalkable) {
       this.props.dispatch(moveOwnPlayerAction(this.props.square.coordinates));
     }
+    if (this.props.square.player) {
+      this.props.dispatch({type: 'TOGGLE_PLAYER_INFORMATION_BOX', payload: { playerId: this.props.square.player.id }});
+    }
   }
 
   render() {
@@ -21,18 +24,21 @@ class Square extends React.Component {
       square.terrain.type,
     ];
     if (square.isWalkable) {
-      classes.push('walkable');
+      classes.push('can-walk');
+    }
+    if (square.player) {
+      classes.push('has-player');
     }
     return (
       <div className={classes.join(' ')} onClick={this.handleOnClick} title={square.isWalkable ? 'Click to move' : ''}>
-        {square.player ? renderPlayer(square.player) : ''}
+        {square.player ? renderPlayer(square.player, this.props.displayPlayerInformation) : ''}
       </div>
     );
   }
 }
 export default connect()(Square);
 
-function renderPlayer(player) {
+function renderPlayer(player, displayPlayerInformation) {
   return (
     <div className="player" title={player.name}>
       <p className="player-image-container">
@@ -40,6 +46,23 @@ function renderPlayer(player) {
       </p>
       <p className="player-title-container">
         {player.name}
+      </p>
+      {displayPlayerInformation ? renderPlayerInformationBox(player) : ''}
+    </div>
+  );
+}
+
+function renderPlayerInformationBox(player) {
+  return (
+    <div className="player-information-popup">
+      <p>
+        {player.name}
+      </p>
+      <p>
+        x{player.coordinates.x} / y{player.coordinates.y}
+      </p>
+      <p>
+        <button>Attaquer</button>
       </p>
     </div>
   );

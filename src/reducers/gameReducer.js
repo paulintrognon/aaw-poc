@@ -8,6 +8,10 @@ const initialState = {
   board: {
     fetched: false,
     board: null,
+    playerInformationBox: {
+      show: false,
+      playerId: null,
+    },
   },
 };
 
@@ -50,6 +54,19 @@ function reducer(state = initialState, action) {
           fetched: true,
           board: action.payload.board,
         },
+      };
+
+    case 'TOGGLE_PLAYER_INFORMATION_BOX':
+      const playerInformationBox = {
+        show: state.board.playerInformationBox.playerId === action.payload.playerId ? !state.board.playerInformationBox.show : true,
+        playerId: action.payload.playerId,
+      };
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          playerInformationBox: playerInformationBox,
+        }
       };
 
     default:

@@ -8,6 +8,15 @@ function mapStoreToProps(store) {
   return store.game.board;
 }
 class PlayerInformation extends React.Component {
+  shouldDisplayPlayerInformation = (player) => {
+    if (!player) {
+      return false;
+    }
+    if (player.id !== this.props.playerInformationBox.playerId) {
+      return false;
+    }
+    return this.props.playerInformationBox.show;
+  }
 
   render() {
     if (!this.props.fetched) {
@@ -19,11 +28,19 @@ class PlayerInformation extends React.Component {
         <div className="board-container">
           {this.props.board.map((row, x) => (
             <div key={x}>
-              {row.map((square, y) => <Square key={`${x}/${y}`} square={square} ></Square>)}
+              {row.map((square, y) => {
+                return (
+                  <Square
+                    key={`${x}/${y}`}
+                    square={square}
+                    displayPlayerInformation={this.shouldDisplayPlayerInformation(square.player)}
+                    >
+                  </Square>
+                )
+              })}
             </div>
           ))}
         </div>
-
       </div>
     );
   }
