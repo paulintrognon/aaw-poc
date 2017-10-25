@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { moveOwnPlayerAction } from '../../actions/gameActions';
+import { moveOwnPlayerAction, soldierIsAttacking } from '../../actions/gameActions';
 
 import './square.css';
-import soldierImg from './soldier.gif';
+import soldierStillImg from './soldier_still.png';
+import soldierAttackingImg from './soldier_attacking.gif';
 
 class Square extends React.Component {
+  attackPlayer = () => {
+    this.props.dispatch(soldierIsAttacking(this.props.square.player.id));
+  }
 
   handleOnClick = () => {
     if (this.props.square.isWalkable) {
@@ -34,39 +38,45 @@ class Square extends React.Component {
     }
     return (
       <div className={classes.join(' ')} onClick={this.handleOnClick} title={square.isWalkable ? 'Click to move' : ''}>
-        {square.player ? renderPlayer(square.player, this.props.displayPlayerInformation) : ''}
+        {square.player ? this.renderPlayer(square.player) : ''}
       </div>
     );
   }
+
+  renderPlayer = (player) => {
+    const isAttacking = player.animation === 'attacking';
+
+    const soldierImg = isAttacking ? soldierAttackingImg : soldierStillImg;
+    return (
+      <div className="player" title={player.name}>
+        <p className="player-image-container">
+          <img src={soldierImg} alt={player.name} />
+        </p>
+        <p className="player-title-container">
+          {player.name}
+        </p>
+        {this.props.displayPlayerInformation ? this.renderPlayerInformationBox(player) : ''}
+      </div>
+    );
+  }
+
+  renderPlayerInformationBox = (player) => {
+    return (
+      <div className="player-information-popup">
+        <p>
+          {player.name}
+        </p>
+        <p>
+          x{player.coordinates.x} / y{player.coordinates.y}
+        </p>
+        <p>
+          <button disabled={!player.isInRange} onClick={this.attackPlayer}>
+            Attaquer
+          </button>
+        </p>
+      </div>
+    );
+  }
+
 }
 export default connect()(Square);
-
-function renderPlayer(player, displayPlayerInformation) {
-  return (
-    <div className="player" title={player.name}>
-      <p className="player-image-container">
-        <img src={soldierImg} alt={player.name} />
-      </p>
-      <p className="player-title-container">
-        {player.name}
-      </p>
-      {displayPlayerInformation ? renderPlayerInformationBox(player) : ''}
-    </div>
-  );
-}
-
-function renderPlayerInformationBox(player) {
-  return (
-    <div className="player-information-popup">
-      <p>
-        {player.name}
-      </p>
-      <p>
-        x{player.coordinates.x} / y{player.coordinates.y}
-      </p>
-      <p>
-        <button disabled={!player.isInRange}>Attaquer</button>
-      </p>
-    </div>
-  );
-}

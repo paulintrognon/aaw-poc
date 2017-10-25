@@ -63,3 +63,12 @@ export function moveOwnPlayerAction(coordinates) {
       });
   };
 }
+
+export function soldierIsAttacking(soldierId) {
+  return (dispatch) => {
+    dispatch({type: 'SOLDIER_IS_ATTACKING', payload: soldierId});
+    setTimeout(() => {
+      dispatch({type: 'SOLDIER_IS_STILL', payload: soldierId});
+    }, 2000);
+  };
+}

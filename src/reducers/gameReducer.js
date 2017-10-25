@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default reducer;
 
 const initialState = {
@@ -16,6 +18,7 @@ const initialState = {
 };
 
 function reducer(state = initialState, action) {
+  const newState = _.cloneDeep(state);
   switch (action.type) {
     case 'PLAYER_FETCH_FULFILLED':
       return {
@@ -66,8 +69,29 @@ function reducer(state = initialState, action) {
         board: {
           ...state.board,
           playerInformationBox: playerInformationBox,
+          board: newState.board.board,
         }
       };
+
+    case 'SOLDIER_IS_ATTACKING':
+      newState.board.board.forEach(row => {
+        row.forEach(square => {
+          if(square.player && square.player.id === action.payload) {
+            square.player.animation = 'attacking';
+          }
+        });
+      });
+      return newState;
+
+    case 'SOLDIER_IS_STILL':
+      newState.board.board.forEach((row, i) => {
+        row.forEach((square, j) => {
+          if(square.player && square.player.id === action.payload) {
+            square.player.animation = 'still';
+          }
+        });
+      });
+      return newState;
 
     default:
       return state;
