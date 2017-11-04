@@ -40,6 +40,9 @@ function playerAttack(req, res) {
   return playersService.attack(player, enemy)
     .then(res => {
       actions.informPlayersOfPlayerAttacking(player);
+      setTimeout(() => {
+        actions.informPlayerOfDamageTaken(enemy, res.damages);
+      }, 1000);
       return res;
     });
 }

@@ -81,11 +81,17 @@ export function attackAction(enemyId) {
     attack(enemyId)
       .then(res => {
         setTimeout(() => {
-          dispatch({type: 'SOLDIER_TAKING_DAMAGES_START', payload: { playerId: enemyId, damages: res.data.damages }});
+          dispatch(damagesTaken(enemyId, res.data.damages))
         }, 1000);
-        setTimeout(() => {
-          dispatch({type: 'SOLDIER_TAKING_DAMAGES_STOP', payload: enemyId});
-        }, 3000);
       });
   };
+}
+
+export function damagesTaken(playerId, damages) {
+  return (dispatch) => {
+    dispatch({ type: 'SOLDIER_TAKING_DAMAGES_START', payload: { playerId, damages }});
+    setTimeout(() => {
+      dispatch({ type: 'SOLDIER_TAKING_DAMAGES_STOP', payload: playerId });
+    }, 2000);
+  }
 }

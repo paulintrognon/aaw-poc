@@ -42,6 +42,16 @@ function reducer(state = initialState, action) {
       }
       return { ...state, isAttacking: false };
 
+    case 'SOLDIER_TAKING_DAMAGES_START':
+      if (action.payload.playerId !== state.player.id) {
+        return state;
+      }
+      let newHealth = state.player.health-action.payload.damages;
+      if (newHealth < 0) {
+        newHealth = 0;
+      }
+      return { ...state, player: { ...state.player, health: newHealth } };
+
     default:
       return state;
   }

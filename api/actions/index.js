@@ -11,6 +11,7 @@ module.exports = {
   init,
   informPlayersOfPlayerMovement,
   informPlayersOfPlayerAttacking,
+  informPlayerOfDamageTaken,
 };
 
 function init(newIo) {
@@ -68,6 +69,10 @@ function informPlayersOfPlayerAttacking(playerAttacking) {
     emitToPlayer(player, 'PLAYER_ATTACKING', playerAttacking.id);
     informedPlayers[player.id] = true;
   });
+}
+
+function informPlayerOfDamageTaken(player, damages) {
+  emitToPlayer(player, 'DAMAGES_TAKEN', damages);
 }
 
 function emitToPlayer(player, type, payload) {
