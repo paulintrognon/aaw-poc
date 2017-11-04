@@ -55,6 +55,11 @@ class Square extends React.Component {
         <p className="player-title-container">
           {player.name}
         </p>
+        {player.takingDamages === undefined ? '' : (
+          <p className="player-damages">
+            - {player.takingDamages}
+          </p>
+        )}
         {this.props.displayPlayerInformation ? this.renderPlayerInformationBox(player) : ''}
       </div>
     );

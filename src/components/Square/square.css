@@ -49,6 +49,33 @@
   cursor: default;
 }
 
+.board-square .player .player-damages {
+  background-color: #A22;
+  color: white;
+  width: 50%;
+  margin: auto;
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 11px;
+  position: relative;
+  animation-duration: 1.5s;
+  animation-name: slideout;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideout {
+  from {
+    opacity: 1;
+    bottom: 0;
+  }
+
+  to {
+    opacity: 0;
+    bottom: 30px;
+  }
+}
+
 .board-square .player-information-popup {
   z-index: 10;
   position: absolute;

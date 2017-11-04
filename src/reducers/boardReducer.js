@@ -68,6 +68,26 @@ function reducer(state = initialState, action) {
       });
       return newState;
 
+    case 'SOLDIER_TAKING_DAMAGES_START':
+      newState.board.forEach((row, i) => {
+        row.forEach((square, j) => {
+          if(square.player && square.player.id === action.payload.playerId) {
+            square.player.takingDamages = action.payload.damages;
+          }
+        });
+      });
+      return newState;
+
+    case 'SOLDIER_TAKING_DAMAGES_STOP':
+      newState.board.forEach((row, i) => {
+        row.forEach((square, j) => {
+          if(square.player && square.player.id === action.payload) {
+            delete square.player.takingDamages;
+          }
+        });
+      });
+      return newState;
+
     default:
       return state;
   }

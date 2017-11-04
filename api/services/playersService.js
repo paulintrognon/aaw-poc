@@ -25,7 +25,7 @@ function attack(player, enemy) {
   }
   const damages = player.shoot();
   enemy.receiveDamages(damages);
-  return bluebird.resolve({ enemy });
+  return bluebird.resolve({ damages });
 }
 
 function canPlayer1RangePlayer2(player1, player2) {

@@ -78,6 +78,14 @@ export function soldierIsAttacking(soldierId) {
 
 export function attackAction(enemyId) {
   return (dispatch) => {
-    attack(enemyId);
+    attack(enemyId)
+      .then(res => {
+        setTimeout(() => {
+          dispatch({type: 'SOLDIER_TAKING_DAMAGES_START', payload: { playerId: enemyId, damages: res.data.damages }});
+        }, 1000);
+        setTimeout(() => {
+          dispatch({type: 'SOLDIER_TAKING_DAMAGES_STOP', payload: enemyId});
+        }, 3000);
+      });
   };
 }
