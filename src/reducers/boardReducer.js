@@ -88,6 +88,14 @@ function reducer(state = initialState, action) {
       });
       return newState;
 
+    case 'OWN_PLAYER_DIED':
+    return {
+      ...state,
+      fetched: false,
+      fetching: false,
+      board: null,
+    };
+
     default:
       return state;
   }

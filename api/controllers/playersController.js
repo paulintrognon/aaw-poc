@@ -37,14 +37,7 @@ function moveOwnPlayer(req, res) {
 function playerAttack(req, res) {
   const player = findPlayer(req.playerId, 'Cannot attack : own player not found');
   const enemy = findPlayer(req.body.enemyId, 'Cannot attack : enemy player not found');
-  return playersService.attack(player, enemy)
-    .then(res => {
-      actions.informPlayersOfPlayerAttacking(player);
-      setTimeout(() => {
-        actions.informPlayerOfDamageTaken(enemy, res.damages);
-      }, 1000);
-      return res;
-    });
+  return gameService.attack(player, enemy);
 }
 
 // ---------------------

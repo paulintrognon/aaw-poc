@@ -18,7 +18,7 @@ function createPlayer(specs) {
       name: 'AK-47',
       range: 2,
       shots: 3,
-      damages: { min: 1, max: 7 },
+      damages: { min: 1, max: 10 },
     },
   };
   const publicProperties = [

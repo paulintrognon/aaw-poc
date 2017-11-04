@@ -112,7 +112,9 @@ function movePlayer(player, newCoordinates) {
   if (player.isOnBoard()) {
     board.boardSquares[player.coordinates.y][player.coordinates.x].player = null;
   }
-  board.boardSquares[newCoordinates.y][newCoordinates.x].player = player;
+  if (newCoordinates.x !== undefined && newCoordinates.y !== undefined) {
+    board.boardSquares[newCoordinates.y][newCoordinates.x].player = player;
+  }
 }
 
 function getSquare(x, y) {

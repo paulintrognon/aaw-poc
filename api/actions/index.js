@@ -72,7 +72,10 @@ function informPlayersOfPlayerAttacking(playerAttacking) {
 }
 
 function informPlayerOfDamageTaken(player, damages) {
-  emitToPlayer(player, 'DAMAGES_TAKEN', damages);
+  emitToPlayer(player, 'DAMAGES_TAKEN', { damages, isDead: player.health === 0 });
+  if (player.health === 0) {
+
+  }
 }
 
 function emitToPlayer(player, type, payload) {

@@ -17,15 +17,9 @@ module.exports = {
 };
 
 function attack(player, enemy) {
-  if (!canPlayer1RangePlayer2(player, enemy)) {
-    return bluebird.reject({
-      name: 'player-not-in-range',
-      message: `${player.id} cannot range ${enemy.id}`,
-    });
-  }
   const damages = player.shoot();
   enemy.receiveDamages(damages);
-  return bluebird.resolve({ damages });
+  return damages;
 }
 
 function canPlayer1RangePlayer2(player1, player2) {
