@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { moveOwnPlayerAction, soldierIsAttacking } from '../../actions/gameActions';
+import { moveOwnPlayerAction } from '../../actions/gameActions';
 
 import './square.css';
 import soldierStillImg from './soldier_still.png';
@@ -9,7 +9,7 @@ import soldierAttackingImg from './soldier_attacking.gif';
 
 class Square extends React.Component {
   attackPlayer = () => {
-    this.props.dispatch(soldierIsAttacking(this.props.square.player.id));
+    this.props.attackHandler(this.props.square.player);
   }
 
   handleOnClick = () => {

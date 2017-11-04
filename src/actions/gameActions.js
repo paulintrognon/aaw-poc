@@ -6,7 +6,8 @@ export function createNewPlayerAction(name) {
   return (dispatch) => {
     createNewPlayer(name)
       .then(res => {
-        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data });
+        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player });
+        dispatch({ type: 'BOARD_FETCH_FULFILLED', payload: res.data.board });
         cookieService.setCookie('aaw_token', res.data.token);
         socketService.open(res.data.player);
       }, err => {
@@ -19,7 +20,8 @@ export function loadExistingPlayer() {
   return (dispatch) => {
     fetchPlayerFromToken()
       .then(res => {
-        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data });
+        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player });
+        dispatch({ type: 'BOARD_FETCH_FULFILLED', payload: res.data.board });
         socketService.open(res.data.player);
       }, err => {
         if (err.response.data.name === 'player-not-found') {
@@ -35,7 +37,8 @@ export function refreshPlayer() {
   return (dispatch) => {
     fetchPlayerFromToken()
       .then(res => {
-        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data });
+        dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player });
+        dispatch({ type: 'BOARD_FETCH_FULFILLED', payload: res.data.board });
       }, err => {
         if (err.response.data.name === 'player-not-found') {
           cookieService.clearCookie('aaw_token');

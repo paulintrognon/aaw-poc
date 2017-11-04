@@ -9,7 +9,7 @@ import CreatePlayerForm from './CreatePlayerForm';
 import './playerInformation.css'
 
 function mapStoreToProps(store) {
-  return store.game.player;
+  return store.player;
 }
 class PlayerInformation extends React.Component {
   componentWillMount() {

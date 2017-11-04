@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { soldierIsAttacking } from '../../actions/gameActions';
+
 import Square from '../Square';
 import './board.css';
 
 function mapStoreToProps(store) {
-  return store.game.board;
+  const props = store.board;
+  props.player = store.player;
+  return props;
 }
 class PlayerInformation extends React.Component {
   shouldDisplayPlayerInformation = (player) => {
@@ -16,6 +20,10 @@ class PlayerInformation extends React.Component {
       return false;
     }
     return this.props.playerInformationBox.show;
+  }
+
+  attackHandler = (enemy) => {
+    this.props.dispatch(soldierIsAttacking(this.props.player.player.id));
   }
 
   render() {
@@ -34,6 +42,7 @@ class PlayerInformation extends React.Component {
                     key={`${x}/${y}`}
                     square={square}
                     displayPlayerInformation={this.shouldDisplayPlayerInformation(square.player)}
+                    attackHandler={this.attackHandler}
                     >
                   </Square>
                 )

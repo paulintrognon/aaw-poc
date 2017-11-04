@@ -18,7 +18,7 @@ function open(player) {
     // If we refresh because our own player moved, we check if the change has already been applied
     if (payload.isMe) {
       setTimeout(() => {
-        const player = store.getState().game.player.player;
+        const player = store.getState().player.player;
         if (player.coordinates.x !== payload.coordinates.x || player.coordinates.y !== payload.coordinates.y) {
           store.dispatch(refreshPlayer());
         }
