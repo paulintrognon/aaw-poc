@@ -4,6 +4,7 @@ const initialState = {
   fetched: false,
   fetching: false,
   player: null,
+  isAttacking: false,
 };
 
 function reducer(state = initialState, action) {
@@ -28,6 +29,18 @@ function reducer(state = initialState, action) {
         ...state,
         player: action.payload.player,
       };
+
+    case 'SOLDIER_IS_ATTACKING':
+      if (action.payload !== state.player.id) {
+        return state;
+      }
+      return { ...state, isAttacking: true };
+
+    case 'SOLDIER_IS_STILL':
+      if (action.payload !== state.player.id) {
+        return state;
+      }
+      return { ...state, isAttacking: false };
 
     default:
       return state;

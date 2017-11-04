@@ -69,11 +69,13 @@ class Square extends React.Component {
         <p>
           x{player.coordinates.x} / y{player.coordinates.y}
         </p>
-        <p>
-          <button disabled={!player.isInRange} onClick={this.attackPlayer}>
-            Attaquer
-          </button>
-        </p>
+        {this.props.ownPlayerId === player.id ? null : (
+          <p>
+            <button disabled={!player.isInRange} onClick={this.attackPlayer}>
+              Attaquer
+            </button>
+          </p>
+        )}
       </div>
     );
   }

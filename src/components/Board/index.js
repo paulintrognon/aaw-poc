@@ -19,6 +19,9 @@ class PlayerInformation extends React.Component {
     if (player.id !== this.props.playerInformationBox.playerId) {
       return false;
     }
+    if (this.props.player.isAttacking) {
+      return false;
+    }
     return this.props.playerInformationBox.show;
   }
 
@@ -42,6 +45,7 @@ class PlayerInformation extends React.Component {
                   <Square
                     key={`${x}/${y}`}
                     square={square}
+                    ownPlayerId={this.props.player.player.id}
                     displayPlayerInformation={this.shouldDisplayPlayerInformation(square.player)}
                     attackHandler={this.attackHandler}
                     >
