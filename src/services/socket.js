@@ -1,5 +1,6 @@
 import openSocket from 'socket.io-client';
 import store from '../store';
+import config from 'config';
 import { fetchBoardAction, refreshPlayer } from '../actions/gameActions';
 
 let socket;
@@ -10,7 +11,7 @@ export default {
 };
 
 function open(player) {
-  socket = openSocket('http://localhost:3001');
+  socket = openSocket(config.api.host);
   socket.emit('PLAYER_SPAWN', player.id);
 
   socket.on('REFRESH_BOARD', payload => {
