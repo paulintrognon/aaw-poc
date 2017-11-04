@@ -1,7 +1,7 @@
 import openSocket from 'socket.io-client';
 import store from '../store';
 import config from 'config';
-import { fetchBoardAction, refreshPlayer } from '../actions/gameActions';
+import { fetchBoardAction, refreshPlayer, soldierIsAttacking } from '../actions/gameActions';
 
 let socket;
 
@@ -26,5 +26,10 @@ function open(player) {
     } else {
       store.dispatch(fetchBoardAction());
     }
+  });
+
+  socket.on('PLAYER_ATTACKING', payload => {
+    console.log('PLAYER_ATTACKING')
+    store.dispatch(soldierIsAttacking(payload));
   });
 }

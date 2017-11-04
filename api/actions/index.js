@@ -10,6 +10,7 @@ const sockets = [
 module.exports = {
   init,
   informPlayersOfPlayerMovement,
+  informPlayersOfPlayerAttacking,
 };
 
 function init(newIo) {
@@ -49,6 +50,22 @@ function informPlayersOfPlayerMovement(oldPlayer, newPlayer) {
       payload.coordinates = newPlayer.coordinates;
     }
     emitToPlayer(player, 'REFRESH_BOARD', payload);
+    informedPlayers[player.id] = true;
+  });
+}
+
+function informPlayersOfPlayerAttacking(playerAttacking) {
+  const allPlayers = playersService.getAllPlayersInSightOfPlayer(playerAttacking);
+  const informedPlayers = {};
+
+  allPlayers.forEach(player => {
+    if (informedPlayers[player.id]) {
+      return;
+    }
+    if (player.id === playerAttacking.id) {
+      return;
+    }
+    emitToPlayer(player, 'PLAYER_ATTACKING', playerAttacking.id);
     informedPlayers[player.id] = true;
   });
 }

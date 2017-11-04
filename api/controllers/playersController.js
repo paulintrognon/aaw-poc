@@ -6,6 +6,7 @@ const bluebird = require('bluebird');
 const playersService = require('../services/playersService');
 const gameService = require('../services/gameService');
 const boardService = require('../services/boardService');
+const actions = require('../actions');
 
 module.exports = {
   moveOwnPlayer,
@@ -36,7 +37,11 @@ function moveOwnPlayer(req, res) {
 function playerAttack(req, res) {
   const player = findPlayer(req.playerId, 'Cannot attack : own player not found');
   const enemy = findPlayer(req.body.enemyId, 'Cannot attack : enemy player not found');
-  return playersService.attack(player, enemy);
+  return playersService.attack(player, enemy)
+    .then(res => {
+      actions.informPlayersOfPlayerAttacking(player);
+      return res;
+    });
 }
 
 // ---------------------
