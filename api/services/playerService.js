@@ -18,7 +18,7 @@ function createPlayer(specs) {
       name: 'AK-47',
       range: 2,
       shots: 3,
-      damages: { min: 10, max: 20 },
+      damages: { min: 1, max: 7 },
     },
   };
   const publicProperties = [
@@ -38,6 +38,8 @@ function createPlayer(specs) {
   player.loadSocket = loadSocket;
   player.getCoordinates = getCoordinates;
   player.setCoordinates = setCoordinates;
+  player.shoot = shoot;
+  player.receiveDamages = receiveDamages;
 
   return player;
 
@@ -70,6 +72,21 @@ function createPlayer(specs) {
   function setCoordinates(newCoordinates) {
     player.coordinates.x = newCoordinates.x;
     player.coordinates.y = newCoordinates.y;
+  }
+
+  function shoot() {
+    let damages = 0;
+    for (var i = 0; i < player.weapon.shots; i++) {
+      damages += _.random(player.weapon.damages.min, player.weapon.damages.max);
+    }
+    return damages;
+  }
+
+  function receiveDamages(damages) {
+    player.health -= damages;
+    if (player.health < 1) {
+      player.health = 0;
+    }
   }
 }
 

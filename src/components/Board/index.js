@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { soldierIsAttacking } from '../../actions/gameActions';
+import { soldierIsAttacking, attackAction } from '../../actions/gameActions';
 
 import Square from '../Square';
 import './board.css';
@@ -23,6 +23,7 @@ class PlayerInformation extends React.Component {
   }
 
   attackHandler = (enemy) => {
+    this.props.dispatch(attackAction(enemy.id));
     this.props.dispatch(soldierIsAttacking(this.props.player.player.id));
   }
 

@@ -1,4 +1,4 @@
-import { createNewPlayer, fetchPlayerFromToken, fetchPlayerBoard, moveOwnPlayer } from '../services/api';
+import { createNewPlayer, fetchPlayerFromToken, fetchPlayerBoard, moveOwnPlayer, attack } from '../services/api';
 import socketService from '../services/socket';
 import cookieService from '../services/cookies';
 
@@ -73,5 +73,11 @@ export function soldierIsAttacking(soldierId) {
     setTimeout(() => {
       dispatch({type: 'SOLDIER_IS_STILL', payload: soldierId});
     }, 2000);
+  };
+}
+
+export function attackAction(enemyId) {
+  return (dispatch) => {
+    attack(enemyId);
   };
 }

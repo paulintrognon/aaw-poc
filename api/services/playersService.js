@@ -1,18 +1,32 @@
 'use strict';
 
 const _ = require('lodash');
+const bluebird = require('bluebird');
 
 const playerService = require('./playerService');
 
 const players = [];
 
 module.exports = {
+  attack,
   canPlayer1SeePlayer2,
   canPlayer1RangePlayer2,
   getAllPlayersInSightOfPlayer,
   createPlayer,
   findPlayer,
 };
+
+function attack(player, enemy) {
+  if (!canPlayer1RangePlayer2(player, enemy)) {
+    return bluebird.reject({
+      name: 'player-not-in-range',
+      message: `${player.id} cannot range ${enemy.id}`,
+    });
+  }
+  const damages = player.shoot();
+  enemy.receiveDamages(damages);
+  return { enemy };
+}
 
 function canPlayer1RangePlayer2(player1, player2) {
   return isInReach(player1, player2, player1.weapon.range);
