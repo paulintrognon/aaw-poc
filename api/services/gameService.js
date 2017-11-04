@@ -42,9 +42,9 @@ function attack(player, enemy) {
   actions.informPlayersOfPlayerAttacking(player);
   setTimeout(() => {
     actions.informPlayerOfDamageTaken(enemy, damages);
+    if (enemy.health === 0) {
+      movePlayerToCoordinates(enemy, {});
+    }
   }, 1000);
-  if (enemy.health === 0) {
-    movePlayerToCoordinates(enemy, {});
-  }
   return bluebird.resolve({ damages });
 }
