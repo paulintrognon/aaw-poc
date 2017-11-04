@@ -13,6 +13,9 @@ class Square extends React.Component {
   }
 
   handleOnClick = () => {
+    if (!this.props.canWalk) {
+      return;
+    }
     if (this.props.square.isWalkable) {
       this.props.dispatch(moveOwnPlayerAction(this.props.square.coordinates));
     }
@@ -27,7 +30,7 @@ class Square extends React.Component {
       'board-square',
       square.terrain.type,
     ];
-    if (square.isWalkable) {
+    if (this.props.canWalk && square.isWalkable) {
       classes.push('can-walk');
     }
     if (square.player) {
