@@ -13,7 +13,7 @@ class Square extends React.Component {
   }
 
   handleOnClick = () => {
-    if (this.props.square.isWalkable) {
+    if (this.props.square.isWalkable && this.props.canWalk) {
       this.props.dispatch(moveOwnPlayerAction(this.props.square.coordinates));
     }
     if (this.props.square.player) {
