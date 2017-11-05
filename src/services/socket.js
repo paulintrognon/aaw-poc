@@ -12,7 +12,7 @@ export default {
 
 function open(player) {
   if (socket) {
-    return;
+    socket.close();
   }
   socket = openSocket(config.api.host);
   socket.emit('PLAYER_SPAWN', player.id);
