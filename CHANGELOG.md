@@ -1,3 +1,8 @@
+## v1.1.0
+
+- Enemies now appear in red
+- Min width on board for mobile display
+
 ### v1.0.1
 
 - Add build script
