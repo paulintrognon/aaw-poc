@@ -1,6 +1,6 @@
 {
   "name": "aaw-poc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "POC of Armies At War",
   "author": "contact@paulintrognon.fr",
   "repository": {
@@ -12,6 +12,7 @@
     "postinstall": "ln -s ../config node_modules/config",
     "start": "react-scripts start",
     "api": "node api/api.js",
+    "build": "react-scripts build",
     "test-api": "./node_modules/mocha/bin/mocha --recursive ./api/**/*.test.js --watch"
   },
   "dependencies": {
