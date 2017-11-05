@@ -13,9 +13,6 @@ class Square extends React.Component {
   }
 
   handleOnClick = () => {
-    if (!this.props.canWalk) {
-      return;
-    }
     if (this.props.square.isWalkable) {
       this.props.dispatch(moveOwnPlayerAction(this.props.square.coordinates));
     }
@@ -79,7 +76,7 @@ class Square extends React.Component {
         </p>
         {this.props.ownPlayerId === player.id ? null : (
           <p>
-            <button disabled={!player.isInRange} onClick={this.attackPlayer}>
+            <button disabled={!this.props.canAttack} onClick={this.attackPlayer}>
               Attaquer
             </button>
           </p>
