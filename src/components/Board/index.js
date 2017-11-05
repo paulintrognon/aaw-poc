@@ -1,13 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { soldierIsAttacking, attackAction } from '../../actions/gameActions';
+
 import Square from '../Square';
 import './board.css';
 
 function mapStoreToProps(store) {
-  return store.game.board;
+  const props = store.board;
+  props.player = store.player;
+  return props;
 }
 class PlayerInformation extends React.Component {
+  shouldDisplayPlayerInformation = (player) => {
+    if (!player) {
+      return false;
+    }
+    if (player.id !== this.props.playerInformationBox.playerId) {
+      return false;
+    }
+    return this.props.playerInformationBox.show;
+  }
+
+  attackHandler = (enemy) => {
+    this.props.dispatch(attackAction(enemy.id));
+    this.props.dispatch(soldierIsAttacking(this.props.player.player.id));
+  }
 
   render() {
     if (!this.props.fetched) {
@@ -19,11 +37,23 @@ class PlayerInformation extends React.Component {
         <div className="board-container">
           {this.props.board.map((row, x) => (
             <div key={x}>
-              {row.map((square, y) => <Square key={`${x}/${y}`} square={square} ></Square>)}
+              {row.map((square, y) => {
+                return (
+                  <Square
+                    key={`${x}/${y}`}
+                    square={square}
+                    canWalk={this.props.player.player.health > 0 && !this.props.player.isAttacking}
+                    ownPlayerId={this.props.player.player.id}
+                    canAttack={square.player && !this.props.player.isAttacking && square.player.isInRange}
+                    displayPlayerInformation={this.shouldDisplayPlayerInformation(square.player)}
+                    attackHandler={this.attackHandler}
+                    >
+                  </Square>
+                )
+              })}
             </div>
           ))}
         </div>
-
       </div>
     );
   }

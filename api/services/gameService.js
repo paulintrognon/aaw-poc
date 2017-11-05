@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const bluebird = require('bluebird');
 const boardService = require('./boardService');
 const playersService = require('./playersService');
 const actions = require('../actions');
@@ -9,6 +10,7 @@ module.exports = {
   init,
   spawnPlayer,
   movePlayerToCoordinates,
+  attack,
 };
 
 function init() {
@@ -27,4 +29,22 @@ function movePlayerToCoordinates(player, newCoordinates) {
   player.setCoordinates(newCoordinates);
 
   actions.informPlayersOfPlayerMovement(oldPlayer, player);
+}
+
+function attack(player, enemy) {
+  if (!playersService.canPlayer1RangePlayer2(player, enemy)) {
+    return bluebird.reject({
+      name: 'player-not-in-range',
+      message: `${player.id} cannot range ${enemy.id}`,
+    });
+  }
+  const damages = playersService.attack(player, enemy);
+  actions.informPlayersOfPlayerAttacking(player);
+  setTimeout(() => {
+    actions.informPlayerOfDamageTaken(enemy, damages);
+    if (enemy.health === 0) {
+      movePlayerToCoordinates(enemy, {});
+    }
+  }, 1000);
+  return bluebird.resolve({ damages });
 }

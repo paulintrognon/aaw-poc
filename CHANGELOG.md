@@ -1,3 +1,7 @@
+## v1.0.0
+
+- Players can attack each other & die
+
 ## v0.1.1
 
 - Fix socket connection error (host was hard coded)

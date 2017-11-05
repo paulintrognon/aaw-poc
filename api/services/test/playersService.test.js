@@ -91,14 +91,16 @@ function getAllPlayersInSightOfPlayerTests() {
 
   function inSightTest() {
     const players = service.getAllPlayersInSightOfPlayer(player1);
-    should(players.length).equal(1);
-    should(players[0]).have.properties({ id: 2 });
+    should(players.length).equal(2);
+    should(players[0]).have.properties({ id: 1 });
+    should(players[1]).have.properties({ id: 2 });
   }
 
   function inSightExtraRangeTest() {
     const players = service.getAllPlayersInSightOfPlayer(player1, 1);
-    should(players.length).equal(2);
-    should(players[0]).have.properties({ id: 2 });
-    should(players[1]).have.properties({ id: 3 });
+    should(players.length).equal(3);
+    should(players[0]).have.properties({ id: 1 });
+    should(players[1]).have.properties({ id: 2 });
+    should(players[2]).have.properties({ id: 3 });
   }
 }

@@ -10,6 +10,8 @@ const sockets = [
 module.exports = {
   init,
   informPlayersOfPlayerMovement,
+  informPlayersOfPlayerAttacking,
+  informPlayerOfDamageTaken,
 };
 
 function init(newIo) {
@@ -51,6 +53,29 @@ function informPlayersOfPlayerMovement(oldPlayer, newPlayer) {
     emitToPlayer(player, 'REFRESH_BOARD', payload);
     informedPlayers[player.id] = true;
   });
+}
+
+function informPlayersOfPlayerAttacking(playerAttacking) {
+  const allPlayers = playersService.getAllPlayersInSightOfPlayer(playerAttacking);
+  const informedPlayers = {};
+
+  allPlayers.forEach(player => {
+    if (informedPlayers[player.id]) {
+      return;
+    }
+    if (player.id === playerAttacking.id) {
+      return;
+    }
+    emitToPlayer(player, 'PLAYER_ATTACKING', playerAttacking.id);
+    informedPlayers[player.id] = true;
+  });
+}
+
+function informPlayerOfDamageTaken(player, damages) {
+  emitToPlayer(player, 'DAMAGES_TAKEN', { damages, isDead: player.health === 0 });
+  if (player.health === 0) {
+
+  }
 }
 
 function emitToPlayer(player, type, payload) {
