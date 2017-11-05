@@ -35,6 +35,9 @@ class Square extends React.Component {
       if (square.player.isInRange) {
         classes.push('player-in-range');
       }
+      if (square.player.id !== this.props.ownPlayerId) {
+        classes.push('is-enemy');
+      }
     }
     return (
       <div className={classes.join(' ')} onClick={this.handleOnClick} title={square.isWalkable ? 'Click to move' : ''}>

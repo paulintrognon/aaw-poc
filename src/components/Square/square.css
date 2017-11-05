@@ -49,6 +49,11 @@
   cursor: default;
 }
 
+.board-square.is-enemy .player .player-title-container {
+  color: #FFF;
+  background-color: #D22;
+}
+
 .board-square .player .player-damages {
   background-color: #A22;
   color: white;
