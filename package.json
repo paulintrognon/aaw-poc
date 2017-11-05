@@ -12,6 +12,7 @@
     "postinstall": "ln -s ../config node_modules/config",
     "start": "react-scripts start",
     "api": "node api/api.js",
+    "build": "react-scripts build",
     "test-api": "./node_modules/mocha/bin/mocha --recursive ./api/**/*.test.js --watch"
   },
   "dependencies": {
