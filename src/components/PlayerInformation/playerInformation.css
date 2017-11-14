@@ -1,4 +1,10 @@
 .player-information-container .player-information {
   border: 1px solid black;
   padding: 1rem;
+  background-color: #C9BF9C;
+  border-radius: 5px;
+}
+
+.player-information-container .player-information li {
+  margin-bottom: 5px;
 }

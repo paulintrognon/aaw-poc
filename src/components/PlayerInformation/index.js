@@ -29,16 +29,16 @@ class PlayerInformation extends React.Component {
         <div className="player-information">
           <ul>
             <li>
-              <b>PV</b>: {this.props.player.health}
+              PV: {this.props.player.health}
             </li>
             <li>
-              <b>Coordonnées</b>: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
+              Coordonnées: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
             </li>
             <li>
-              <b>Tués</b>: {this.props.player.kills}
+              Tués: {this.props.player.kills}
             </li>
             <li>
-              <b>Morts</b>: {this.props.player.deaths}
+              Morts: {this.props.player.deaths}
             </li>
           </ul>
         </div>
