@@ -43,8 +43,13 @@ function attack(player, enemy) {
   setTimeout(() => {
     actions.informPlayerOfDamageTaken(enemy, damages);
     if (enemy.health === 0) {
-      movePlayerToCoordinates(enemy, {});
+      respawnPlayer(enemy);
     }
   }, 1000);
   return bluebird.resolve({ damages });
+}
+
+function respawnPlayer(player) {
+  player.fullHealth();
+  spawnPlayer(player);
 }

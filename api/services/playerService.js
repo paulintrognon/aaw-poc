@@ -38,6 +38,7 @@ function createPlayer(specs) {
   player.loadSocket = loadSocket;
   player.getCoordinates = getCoordinates;
   player.setCoordinates = setCoordinates;
+  player.fullHealth = fullHealth;
   player.shoot = shoot;
   player.receiveDamages = receiveDamages;
 
@@ -87,6 +88,10 @@ function createPlayer(specs) {
     if (player.health < 1) {
       player.health = 0;
     }
+  }
+
+  function fullHealth() {
+    player.health = 100;
   }
 }
 

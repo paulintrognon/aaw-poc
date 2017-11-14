@@ -1,7 +1,7 @@
 import openSocket from 'socket.io-client';
 import store from '../store';
 import config from 'config';
-import { fetchBoardAction, refreshPlayer, soldierIsAttacking, damagesTaken, ownPlayerDiedAction } from '../actions/gameActions';
+import { fetchBoardAction, refreshPlayer, soldierIsAttacking, damagesTaken } from '../actions/gameActions';
 
 let socket;
 
@@ -40,7 +40,7 @@ function open(player) {
     store.dispatch(damagesTaken(player.id, payload.damages));
     if (payload.isDead) {
       setTimeout(() => {
-        store.dispatch(ownPlayerDiedAction());
+        store.dispatch(refreshPlayer());
       }, 2000);
     }
   });

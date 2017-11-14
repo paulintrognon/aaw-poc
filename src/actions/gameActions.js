@@ -95,9 +95,3 @@ export function damagesTaken(playerId, damages) {
     }, 2000);
   }
 }
-
-export function ownPlayerDiedAction(playerId) {
-  cookieService.clearCookie('aaw_token');
-  alert('Sorry, you died :(');
-  return { type: 'OWN_PLAYER_DIED' };
-}
