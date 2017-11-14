@@ -48,7 +48,7 @@ function attack(player, enemy) {
       respawnPlayer(enemy);
     }
   }, 1000);
-  return bluebird.resolve({ damages });
+  return bluebird.resolve({ damages, hasKilled: enemy.health === 0 });
 }
 
 function respawnPlayer(player) {

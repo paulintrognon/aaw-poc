@@ -81,7 +81,10 @@ export function attackAction(enemyId) {
     attack(enemyId)
       .then(res => {
         setTimeout(() => {
-          dispatch(damagesTaken(enemyId, res.data.damages))
+          dispatch(damagesTaken(enemyId, res.data.damages));
+          if (res.data.hasKilled) {
+            dispatch({ type: 'OWN_SOLDIER_HAS_KILLED' });
+          }
         }, 1000);
       });
   };

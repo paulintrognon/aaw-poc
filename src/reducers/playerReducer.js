@@ -52,6 +52,9 @@ function reducer(state = initialState, action) {
       }
       return { ...state, player: { ...state.player, health: newHealth } };
 
+    case 'OWN_SOLDIER_HAS_KILLED':
+      return { ...state, player: { ...state.player, kills: state.player.kills+1 } };
+
     default:
       return state;
   }
