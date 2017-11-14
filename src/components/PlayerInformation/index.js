@@ -25,23 +25,20 @@ class PlayerInformation extends React.Component {
     }
     return (
       <div className="player-information-container">
-        <h2>Player's Data</h2>
+        <h2>{this.props.player.name} ({this.props.player.id})</h2>
         <div className="player-information">
-          <h3 className="player-title">
-            {this.props.player.name} <span className="player-id">[{this.props.player.id}]</span>
-          </h3>
           <ul>
             <li>
-              <b>Health</b>: {this.props.player.health}
+              <b>PV</b>: {this.props.player.health}
             </li>
             <li>
-              <b>Coordinates</b>: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
+              <b>Coordonnées</b>: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
             </li>
             <li>
-              <b>Kills</b>: {this.props.player.kills}
+              <b>Tués</b>: {this.props.player.kills}
             </li>
             <li>
-              <b>Deaths</b>: {this.props.player.deaths}
+              <b>Morts</b>: {this.props.player.deaths}
             </li>
           </ul>
         </div>

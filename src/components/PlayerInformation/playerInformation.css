@@ -2,13 +2,3 @@
   border: 1px solid black;
   padding: 1rem;
 }
-
-.player-information-container .player-information .player-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.player-information-container .player-information .player-id {
-  font-style: italic;
-  color: #555;
-}
