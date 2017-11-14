@@ -75,7 +75,7 @@ class Square extends React.Component {
           {player.name}
         </p>
         <p>
-          x{player.coordinates.x} / y{player.coordinates.y}
+          Tués : {player.kills} / morts : {player.deaths}
         </p>
         {this.props.ownPlayerId === player.id ? null : (
           <p>
