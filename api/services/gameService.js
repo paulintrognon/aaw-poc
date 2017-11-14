@@ -43,6 +43,8 @@ function attack(player, enemy) {
   setTimeout(() => {
     actions.informPlayerOfDamageTaken(enemy, damages);
     if (enemy.health === 0) {
+      player.kills++;
+      enemy.deaths++;
       respawnPlayer(enemy);
     }
   }, 1000);

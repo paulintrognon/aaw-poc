@@ -37,6 +37,12 @@ class PlayerInformation extends React.Component {
             <li>
               <b>Coordinates</b>: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
             </li>
+            <li>
+              <b>Kills</b>: {this.props.player.kills}
+            </li>
+            <li>
+              <b>Deaths</b>: {this.props.player.deaths}
+            </li>
           </ul>
         </div>
       </div>

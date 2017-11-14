@@ -20,12 +20,16 @@ function createPlayer(specs) {
       shots: 3,
       damages: { min: 1, max: 10 },
     },
+    deaths: 0,
+    kills: 0,
   };
   const publicProperties = [
     'id',
     'name',
     'coordinates',
     'weapon',
+    'deaths',
+    'kills',
   ];
   const privateProperties = publicProperties.concat([
     'health',

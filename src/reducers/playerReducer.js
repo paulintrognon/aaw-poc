@@ -52,10 +52,6 @@ function reducer(state = initialState, action) {
       }
       return { ...state, player: { ...state.player, health: newHealth } };
 
-    case 'OWN_PLAYER_DIED': {
-      return { ...state, fetched: false, player: null };
-    }
-
     default:
       return state;
   }
