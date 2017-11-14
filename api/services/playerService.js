@@ -18,7 +18,7 @@ function createPlayer(specs) {
       name: 'AK-47',
       range: 2,
       shots: 3,
-      damages: { min: 1, max: 10 },
+      damages: { min: 6, max: 8 },
     },
     deaths: 0,
     kills: 0,
