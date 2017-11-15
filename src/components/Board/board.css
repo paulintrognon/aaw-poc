@@ -1,3 +1,11 @@
+.board-card {
+  background-color: #34403a;
+  color: #fff;
+  border: 1px solid black;
+  padding: 1rem;
+  width: 525px;
+}
+
 .board-container {
   display: inline-block;
   border-top: 1px solid black;

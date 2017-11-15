@@ -32,7 +32,7 @@ class PlayerInformation extends React.Component {
       return null;
     }
     return (
-      <div>
+      <div className="board-card">
         <h2>Plateau</h2>
         <div className="board-container">
           {this.props.board.map((row, x) => (

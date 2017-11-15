@@ -40,8 +40,9 @@
   bottom: 0px;
   width: 100%;
   font-size: 0.8rem;
-  color: #000;
-  background-color: #FFF;
+  color: #FFF;
+  background-color: #34403a;
+  border-top: 1px solid #000;
   padding: 3px 10px;
   white-space: nowrap;
   overflow: hidden;

@@ -1,7 +1,8 @@
-.player-information-container .player-information {
+.player-information-container {
+  background-color: #34403a;
+  color: #fff;
   border: 1px solid black;
   padding: 1rem;
-  background-color: #C9BF9C;
 }
 
 .player-information-container .player-information li {
