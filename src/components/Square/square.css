@@ -52,7 +52,7 @@
 
 .board-square.is-enemy .player .player-title-container {
   color: #FFF;
-  background-color: #D22;
+  background-color: #8A0303;
 }
 
 .board-square .player .player-damages {
@@ -83,17 +83,17 @@
 }
 
 .board-square .player-information-popup {
+  font-size: 0.8em;
   z-index: 10;
   position: absolute;
-  bottom: -100px;
-  right: -61px;
+  top: 75px;
+  right: -36px;
   padding: 10px;
-  width: 190px;
-  border: 1px solid #555;
-  background-color: rgba(255,255,255,0.85);
-  box-shadow: 0px 0px 5px #555;
+  width: 140px;
+  border: 1px solid #000;
+  background-color: rgba(52, 64, 58,0.95);
 }
 
 .board-square .player-information-popup p {
-  margin-bottom: 5px;
+  margin-bottom: 0.5em;
 }

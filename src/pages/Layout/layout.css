@@ -19,3 +19,11 @@ h2 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
+
+input[type="button"],input[type="submit"],button {
+  border-radius: 0px;
+  border: 1px solid #B6B6B3;
+  padding: 8px 20px;
+  background-color: #fff;
+  cursor: pointer;
+}
