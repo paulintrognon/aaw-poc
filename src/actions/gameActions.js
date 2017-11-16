@@ -80,6 +80,7 @@ export function soldierIsAttacking(soldierId) {
 
 export function attackAction(enemyId) {
   return (dispatch) => {
+    dispatch({ type: 'OWN_SOLDIER_ATTACKED' });
     attack(enemyId)
       .then(res => {
         setTimeout(() => {

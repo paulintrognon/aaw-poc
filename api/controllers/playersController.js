@@ -45,6 +45,14 @@ function moveOwnPlayer(req, res) {
 function playerAttack(req, res) {
   const player = findPlayer(req.playerId, 'Cannot attack : own player not found');
   const enemy = findPlayer(req.body.enemyId, 'Cannot attack : enemy player not found');
+  if (player.actionPoints < 4) {
+    return bluebird.reject({
+      status: 400,
+      name: 'not-enough-action-points',
+      message: 'Cannot attack player : not enough action points',
+    });
+  }
+  player.actionPoints -= 4;
   return gameService.attack(player, enemy);
 }
 

@@ -37,7 +37,7 @@ class PlayerInformation extends React.Component {
           </div>
           <div className="col-6">
             <p title="Points d'Actions. Permettent de se déplacer.">
-              PA: {this.props.player.actionPoints} / 15
+              PA: {this.props.player.actionPoints} / 20
             </p>
           </div>
           <div className="col-12">

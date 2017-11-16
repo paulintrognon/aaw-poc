@@ -30,6 +30,9 @@ function reducer(state = initialState, action) {
         player: action.payload.player,
       };
 
+    case 'OWN_SOLDIER_ATTACKED':
+      return { ...state, player: {...state.player, actionPoints: state.player.actionPoints - 4 } };
+
     case 'SOLDIER_IS_ATTACKING':
       if (action.payload !== state.player.id) {
         return state;

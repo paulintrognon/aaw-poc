@@ -4,6 +4,9 @@ const _ = require('lodash');
 const moment = require('moment');
 const crypto = require('crypto');
 
+const MAX_PV = 100;
+const MAX_PA = 20;
+
 module.exports = {
   createPlayer,
 };
@@ -12,10 +15,10 @@ function createPlayer(specs) {
   const player = {
     id: specs.id || generateId(),
     name: specs.name,
-    health: specs.health || 100,
+    health: specs.health || MAX_PV,
     coordinates: specs.coordinates || {},
     sight: 3,
-    actionPoints: 15,
+    actionPoints: MAX_PA,
     lastTurnDate: new Date(),
     nextTurnDate: new Date(),
     weapon: {
@@ -103,17 +106,17 @@ function createPlayer(specs) {
   }
 
   function fullHealth() {
-    player.health = 100;
-    player.actionPoints = 15;
+    player.health = MAX_PV;
+    player.actionPoints = MAX_PA;
   }
 
   function newTurn() {
     player.lastTurnDate = new Date();
     player.nextTurnDate = moment().add(2, 'minutes').toDate();
-    player.actionPoints = 15;
+    player.actionPoints = MAX_PA;
     player.health += 5;
-    if (player.health > 100) {
-      player.health = 100;
+    if (player.health > MAX_PV) {
+      player.health = MAX_PV;
     }
   }
 }
