@@ -20,7 +20,7 @@ class PlayerInformation extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="create-soldier-form">
         <input type="text" placeholder="Votre nom, soldat ?" onChange={this.handleNameChange} />
         <input type="submit" value="Go !" />
       </form>

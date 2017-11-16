@@ -11,6 +11,7 @@ const tokenService = require('../services/tokenService');
 module.exports = {
   createPlayer,
   fetchPlayer,
+  getScoreBoard,
 };
 
 function createPlayer(req, res) {
@@ -48,5 +49,11 @@ function fetchPlayer(req, res) {
   return {
     player: player.getPrivateProperties(),
     board: boardService.getPlayerBoard(player),
+  };
+}
+
+function getScoreBoard() {
+  return {
+    scoreBoard: playersService.getScores(),
   };
 }

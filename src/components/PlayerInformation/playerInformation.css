@@ -1,10 +1,7 @@
-.player-information-container {
-  background-color: #34403a;
-  color: #fff;
-  border: 1px solid black;
-  padding: 1rem;
-}
-
 .player-information-container .player-information li {
   margin-bottom: 5px;
+}
+
+.create-soldier-form {
+  margin-bottom: 30px;
 }

@@ -27,3 +27,11 @@ input[type="button"],input[type="submit"],button {
   background-color: #fff;
   cursor: pointer;
 }
+
+.card-container {
+  background-color: #34403a;
+  color: #fff;
+  border: 1px solid black;
+  padding: 1rem;
+  margin-bottom: 30px;
+}

@@ -7,9 +7,9 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div className="full-container">
-        <nav class="main-nav navbar navbar-dark">
+        <nav className="main-nav navbar navbar-dark">
           <div className="container">
-            <a class="navbar-brand" href="/">
+            <a className="navbar-brand" href="/">
               Armies At War
             </a>
           </div>

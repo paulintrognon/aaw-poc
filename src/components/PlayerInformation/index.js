@@ -24,7 +24,7 @@ class PlayerInformation extends React.Component {
       return <CreatePlayerForm></CreatePlayerForm>;
     }
     return (
-      <div className="player-information-container">
+      <div className="player-information-container card-container">
         <h2>{this.props.player.name} ({this.props.player.id})</h2>
         <div className="player-information">
           <ul>
