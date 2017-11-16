@@ -14,6 +14,7 @@ function createPlayer(specs) {
     health: specs.health || 100,
     coordinates: specs.coordinates || {},
     sight: 3,
+    actionPoints: 15,
     weapon: {
       name: 'AK-47',
       range: 2,
@@ -34,6 +35,7 @@ function createPlayer(specs) {
   const privateProperties = publicProperties.concat([
     'health',
     'sight',
+    'actionPoints',
   ]);
 
   player.getPublicProperties = getPublicProperties;
@@ -96,6 +98,7 @@ function createPlayer(specs) {
 
   function fullHealth() {
     player.health = 100;
+    player.actionPoints = 15;
   }
 }
 

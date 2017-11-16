@@ -32,6 +32,9 @@ class PlayerInformation extends React.Component {
               PV: {this.props.player.health}
             </li>
             <li>
+              PA: {this.props.player.actionPoints}
+            </li>
+            <li>
               Coordonnées: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
             </li>
             <li>

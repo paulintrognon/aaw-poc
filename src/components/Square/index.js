@@ -40,7 +40,7 @@ class Square extends React.Component {
       }
     }
     return (
-      <div className={classes.join(' ')} onClick={this.handleOnClick} title={square.isWalkable ? 'Click to move' : ''}>
+      <div className={classes.join(' ')} onClick={this.handleOnClick} title={this.props.canWalk ? 'Bouger vers la case' : ''}>
         {square.player ? this.renderPlayer(square.player) : ''}
       </div>
     );

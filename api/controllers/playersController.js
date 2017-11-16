@@ -24,7 +24,15 @@ function moveOwnPlayer(req, res) {
   }
 
   const player = findPlayer(req.playerId, 'Cannot move own player : not found');
+  if (player.actionPoints < 1) {
+    return bluebird.reject({
+      status: 400,
+      name: 'not-enough-action-points',
+      message: 'Cannot move player : not enough action points',
+    });
+  }
   gameService.movePlayerToCoordinates(player, coordinates);
+  player.actionPoints--;
   const board = boardService.getPlayerBoard(player);
   return {
     board,
