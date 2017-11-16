@@ -33,7 +33,13 @@ class PlayerInformation extends React.Component {
     }
     return (
       <div className="board-card card-container">
-        <h2>Plateau</h2>
+        <h2>
+          <span className="board-coordinates">
+            X = {this.props.player.player.coordinates.x},
+            Y = {this.props.player.player.coordinates.y}
+          </span>
+          Plateau
+        </h2>
         <div className="board-container">
           {this.props.board.map((row, x) => (
             <div key={x}>

@@ -2,6 +2,10 @@
   margin-bottom: 5px;
 }
 
+.player-information-container .player-name {
+  margin-bottom: 20px;
+}
+
 .create-soldier-form {
   margin-bottom: 30px;
 }
