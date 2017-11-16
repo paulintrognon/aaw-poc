@@ -49,4 +49,8 @@ function open(player) {
   socket.on('REFRESH_SCORE_BOARD', payload => {
     store.dispatch(updateScoreBoardAction(payload));
   });
+
+  socket.on('NEW_TURN', payload => {
+    store.dispatch(refreshPlayer());
+  });
 }

@@ -6,6 +6,10 @@
   margin-bottom: 20px;
 }
 
+.player-information-container p {
+  margin-bottom: 10px;
+}
+
 .create-soldier-form {
   margin-bottom: 30px;
 }

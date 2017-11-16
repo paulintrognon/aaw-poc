@@ -48,9 +48,9 @@ class PlayerInformation extends React.Component {
                   <Square
                     key={`${x}/${y}`}
                     square={square}
-                    canWalk={this.props.player.player.health > 0 && !this.props.player.isAttacking}
+                    canWalk={this.props.player.player.actionPoints > 0 && this.props.player.player.health > 0 && !this.props.player.isAttacking}
                     ownPlayerId={this.props.player.player.id}
-                    canAttack={square.player && !this.props.player.isAttacking && square.player.isInRange}
+                    canAttack={square.player && !this.props.player.isAttacking && square.player.isInRange && this.props.player.player.actionPoints >= 4}
                     displayPlayerInformation={this.shouldDisplayPlayerInformation(square.player)}
                     attackHandler={this.attackHandler}
                     >
