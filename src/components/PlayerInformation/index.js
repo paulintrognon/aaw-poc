@@ -1,4 +1,6 @@
 import React from 'react';
+import Moment from 'react-moment';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { loadExistingPlayer } from '../../actions/gameActions';
 
@@ -23,6 +25,7 @@ class PlayerInformation extends React.Component {
     if (!this.props.fetched) {
       return <CreatePlayerForm></CreatePlayerForm>;
     }
+
     return (
       <div className="player-information-container card-container">
         <h2 className="player-name">{this.props.player.name}</h2>
@@ -38,6 +41,9 @@ class PlayerInformation extends React.Component {
             </p>
           </div>
           <div className="col-12">
+            <p title={moment(this.props.player.nextTurnDate).format('dddd, Do MMMM YYYY, H:mm:ss')}>
+              Prochain tour : <Moment fromNow interval={100}>{this.props.player.nextTurnDate}</Moment>
+            </p>
             <p>
               {this.props.player.kills} enemis tué(s) / Mort {this.props.player.deaths} fois
             </p>

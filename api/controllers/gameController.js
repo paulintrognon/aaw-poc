@@ -8,6 +8,7 @@ const boardService = require('../services/boardService');
 const gameService = require('../services/gameService');
 const playersService = require('../services/playersService');
 const tokenService = require('../services/tokenService');
+const turnsService = require('../services/turnsService');
 
 module.exports = {
   createPlayer,
@@ -26,6 +27,8 @@ function createPlayer(req, res) {
   }
 
   const player = playersService.createPlayer({ name });
+  turnsService.setupTurnsForPlayer(player);
+
   gameService.spawnPlayer(player);
   actions.refreshScoreBoard();
 

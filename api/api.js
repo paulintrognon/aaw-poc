@@ -20,6 +20,8 @@ const cors = require('cors');
 const express = require('express');
 const http = require('http');
 const logger = require('./logger');
+const moment = require('moment');
+moment.locale('fr');
 
 /**
  * Creating the app

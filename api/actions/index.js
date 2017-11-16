@@ -10,6 +10,7 @@ module.exports = {
   informPlayersOfPlayerMovement,
   informPlayersOfPlayerAttacking,
   informPlayerOfDamageTaken,
+  informPlayerOfNewTurn,
   refreshScoreBoard,
 };
 
@@ -75,6 +76,10 @@ function informPlayerOfDamageTaken(player, damages) {
   if (player.health === 0) {
 
   }
+}
+
+function informPlayerOfNewTurn(player) {
+  emitToPlayer(player, 'NEW_TURN', { player });
 }
 
 function refreshScoreBoard() {

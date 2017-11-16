@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const moment = require('moment');
 const crypto = require('crypto');
 
 module.exports = {
@@ -15,6 +16,8 @@ function createPlayer(specs) {
     coordinates: specs.coordinates || {},
     sight: 3,
     actionPoints: 15,
+    lastTurnDate: new Date(),
+    nextTurnDate: new Date(),
     weapon: {
       name: 'AK-47',
       range: 2,
@@ -36,6 +39,8 @@ function createPlayer(specs) {
     'health',
     'sight',
     'actionPoints',
+    'lastTurnDate',
+    'nextTurnDate',
   ]);
 
   player.getPublicProperties = getPublicProperties;
@@ -45,6 +50,7 @@ function createPlayer(specs) {
   player.getCoordinates = getCoordinates;
   player.setCoordinates = setCoordinates;
   player.fullHealth = fullHealth;
+  player.newTurn = newTurn;
   player.shoot = shoot;
   player.receiveDamages = receiveDamages;
 
@@ -99,6 +105,16 @@ function createPlayer(specs) {
   function fullHealth() {
     player.health = 100;
     player.actionPoints = 15;
+  }
+
+  function newTurn() {
+    player.lastTurnDate = new Date();
+    player.nextTurnDate = moment().add(2, 'minutes').toDate();
+    player.actionPoints = 15;
+    player.health += 5;
+    if (player.health > 100) {
+      player.health = 100;
+    }
   }
 }
 
