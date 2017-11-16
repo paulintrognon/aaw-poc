@@ -8,3 +8,8 @@
   border-left: 1px solid black;
   min-width: 490px;
 }
+
+.board-card .board-coordinates {
+  float: right;
+  font-size: 0.8em;
+}
