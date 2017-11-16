@@ -1,4 +1,5 @@
 import { createNewPlayer, fetchPlayerFromToken, fetchPlayerBoard, moveOwnPlayer, attack } from '../services/api';
+import { fetchScoreBoardAction } from './scoreBoardActions';
 import socketService from '../services/socket';
 import cookieService from '../services/cookies';
 
@@ -6,6 +7,7 @@ export function createNewPlayerAction(name) {
   return (dispatch) => {
     createNewPlayer(name)
       .then(res => {
+        dispatch(fetchScoreBoardAction());
         dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player });
         dispatch({ type: 'BOARD_FETCH_FULFILLED', payload: res.data.board });
         cookieService.setCookie('aaw_token', res.data.token);

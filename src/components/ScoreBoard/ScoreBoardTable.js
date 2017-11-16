@@ -19,7 +19,7 @@ export default function ScoreBoardTable(props) {
       {
         props.players.map((player, i) => (<tr key={i}>
           <td>
-            {player.name}
+            <b>{player.name}</b>
           </td>
           <td>
             {player.kills}

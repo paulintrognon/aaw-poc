@@ -2,6 +2,7 @@ import openSocket from 'socket.io-client';
 import store from '../store';
 import config from 'config';
 import { fetchBoardAction, refreshPlayer, soldierIsAttacking, damagesTaken } from '../actions/gameActions';
+import { updateScoreBoardAction } from '../actions/scoreBoardActions';
 
 let socket;
 
@@ -43,5 +44,9 @@ function open(player) {
         store.dispatch(refreshPlayer());
       }, 2000);
     }
+  });
+
+  socket.on('REFRESH_SCORE_BOARD', payload => {
+    store.dispatch(updateScoreBoardAction(payload));
   });
 }

@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const bluebird = require('bluebird');
 
+const actions = require('../actions');
 const boardService = require('../services/boardService');
 const gameService = require('../services/gameService');
 const playersService = require('../services/playersService');
@@ -26,6 +27,7 @@ function createPlayer(req, res) {
 
   const player = playersService.createPlayer({ name });
   gameService.spawnPlayer(player);
+  actions.refreshScoreBoard();
 
   const token = tokenService.create(player);
 

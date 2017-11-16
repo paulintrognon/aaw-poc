@@ -5,7 +5,11 @@ export function fetchScoreBoardAction() {
     dispatch({ type: 'SCORE_BOARD_FETCHING' });
     fetchScoreBoard()
       .then(res => {
-        dispatch({ type: 'SCORE_BOARD_FETCHED', payload: res.data.scoreBoard });
+        dispatch(updateScoreBoardAction(res.data.scoreBoard));
       });
   };
+}
+
+export function updateScoreBoardAction(scoreBoard) {
+  return { type: 'SCORE_BOARD_FETCHED', payload: scoreBoard };
 }

@@ -3,15 +3,14 @@
 const playersService = require('../services/playersService');
 
 let io = null;
-const sockets = [
-
-];
+const sockets = [];
 
 module.exports = {
   init,
   informPlayersOfPlayerMovement,
   informPlayersOfPlayerAttacking,
   informPlayerOfDamageTaken,
+  refreshScoreBoard,
 };
 
 function init(newIo) {
@@ -78,10 +77,23 @@ function informPlayerOfDamageTaken(player, damages) {
   }
 }
 
+function refreshScoreBoard() {
+  const scores = playersService.getScores();
+  emitToAllPlayers('REFRESH_SCORE_BOARD', scores);
+}
+
+
 function emitToPlayer(player, type, payload) {
   sockets.forEach(socket => {
     if (socket.playerId === player.id) {
       io.to(socket.id).emit(type, payload);
     }
+  });
+}
+
+function emitToAllPlayers(type, payload) {
+  console.log(`to all: ${type}`);
+  sockets.forEach(socket => {
+    io.to(socket.id).emit(type, payload);
   });
 }
