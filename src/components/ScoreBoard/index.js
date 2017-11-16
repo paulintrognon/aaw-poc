@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchScoreBoardAction } from '../../actions/scoreBoardActions';
 
+import ScoreBoardTable from './ScoreBoardTable';
 import './scoreBoard.css'
 
 function mapStoreToProps(store) {
@@ -14,36 +15,7 @@ class ScoreBoard extends React.Component {
   }
 
   renderContent = (list) => {
-    return <table className="score-board-table table">
-      <thead>
-      <tr>
-        <th>
-          Nom
-        </th>
-        <th>
-          Tués
-        </th>
-        <th>
-          Morts
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      {list.map((player, i) => (
-        <tr key={i}>
-          <td>
-            {player.name}
-          </td>
-          <td>
-            {player.kills}
-          </td>
-          <td>
-            {player.deaths}
-          </td>
-        </tr>
-      ))}
-      </tbody>
-    </table>;
+    return <ScoreBoardTable players={list}></ScoreBoardTable>;
   }
 
   renderLoading = () => {
