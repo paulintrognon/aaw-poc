@@ -36,11 +36,11 @@ class Square extends React.Component {
         classes.push('player-in-range');
       }
       if (square.player.id !== this.props.ownPlayerId) {
-        classes.push('is-enemy');
+        classes.push(square.player.team);
       }
     }
     return (
-      <div className={classes.join(' ')} onClick={this.handleOnClick} title={square.isWalkable ? 'Click to move' : ''}>
+      <div className={classes.join(' ')} onClick={this.handleOnClick} title={this.props.canWalk ? 'Bouger vers la case' : ''}>
         {square.player ? this.renderPlayer(square.player) : ''}
       </div>
     );
@@ -56,7 +56,7 @@ class Square extends React.Component {
           <img src={soldierImg} alt={player.name} />
         </p>
         <p className="player-title-container">
-          {player.name}
+          {player.team}-{player.name}
         </p>
         {player.takingDamages === undefined ? '' : (
           <p className="player-damages">
@@ -75,7 +75,7 @@ class Square extends React.Component {
           {player.name}
         </p>
         <p>
-          x{player.coordinates.x} / y{player.coordinates.y}
+          Tués : {player.kills} / morts : {player.deaths}
         </p>
         {this.props.ownPlayerId === player.id ? null : (
           <p>

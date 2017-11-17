@@ -1,6 +1,15 @@
+.board-card {
+  width: 630px;
+}
+
 .board-container {
   display: inline-block;
   border-top: 1px solid black;
   border-left: 1px solid black;
-  min-width: 500px;
+  min-width: 596px;
+}
+
+.board-card .board-coordinates {
+  float: right;
+  font-size: 0.8em;
 }

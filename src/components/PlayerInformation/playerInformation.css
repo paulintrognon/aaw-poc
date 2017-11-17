@@ -1,14 +1,19 @@
-.player-information-container .player-information {
-  border: 1px solid black;
-  padding: 1rem;
+.player-information-container .player-information li {
+  margin-bottom: 5px;
 }
 
-.player-information-container .player-information .player-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+.player-information-container .player-name {
+  margin-bottom: 20px;
 }
 
-.player-information-container .player-information .player-id {
-  font-style: italic;
-  color: #555;
+.player-information-container p {
+  margin-bottom: 10px;
+}
+
+.create-soldier-form {
+  margin-bottom: 30px;
+}
+
+.create-soldier-form input[type="text"] {
+  padding: 5px;
 }

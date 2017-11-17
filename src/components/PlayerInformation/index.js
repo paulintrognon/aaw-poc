@@ -1,4 +1,6 @@
 import React from 'react';
+import Moment from 'react-moment';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { loadExistingPlayer } from '../../actions/gameActions';
 
@@ -23,21 +25,26 @@ class PlayerInformation extends React.Component {
     if (!this.props.fetched) {
       return <CreatePlayerForm></CreatePlayerForm>;
     }
+
     return (
-      <div className="player-information-container">
-        <h2>Player's Data</h2>
-        <div className="player-information">
-          <h3 className="player-title">
-            {this.props.player.name} <span className="player-id">[{this.props.player.id}]</span>
-          </h3>
-          <ul>
-            <li>
-              <b>Health</b>: {this.props.player.health}
-            </li>
-            <li>
-              <b>Coordinates</b>: x={this.props.player.coordinates.x} / y={this.props.player.coordinates.y}
-            </li>
-          </ul>
+      <div className="player-information-container card-container">
+        <h2 className="player-name">{this.props.player.name}</h2>
+        <div className="row">
+          <div className="col-6">
+            <p title="Points de Vie. Vous mourrez si vos PVs tombent à zéro.">
+              PV : {this.props.player.health} / 100
+            </p>
+          </div>
+          <div className="col-6">
+            <p title="Points d'Actions. Permettent de se déplacer.">
+              PA: {this.props.player.actionPoints} / 20
+            </p>
+          </div>
+          <div className="col-12">
+            <p title={moment(this.props.player.nextTurnDate).format('dddd, Do MMMM YYYY, H:mm:ss')}>
+              Prochain tour : <Moment fromNow interval={100}>{this.props.player.nextTurnDate}</Moment>
+            </p>
+          </div>
         </div>
       </div>
     );

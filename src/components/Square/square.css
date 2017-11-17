@@ -1,6 +1,6 @@
 .board-square {
   display: inline-block;
-  width: 70px;
+  width: 85px;
   height: 70px;
   text-align: center;
   vertical-align: bottom;
@@ -40,8 +40,9 @@
   bottom: 0px;
   width: 100%;
   font-size: 0.8rem;
-  color: #000;
-  background-color: #FFF;
+  color: #FFF;
+  background-color: #34403a;
+  border-top: 1px solid #000;
   padding: 3px 10px;
   white-space: nowrap;
   overflow: hidden;
@@ -49,9 +50,14 @@
   cursor: default;
 }
 
-.board-square.is-enemy .player .player-title-container {
+.board-square.GE .player .player-title-container {
   color: #FFF;
-  background-color: #D22;
+  background-color: #8A0303;
+}
+
+.board-square.AT .player .player-title-container {
+  color: #333;
+  background-color: #EEE;
 }
 
 .board-square .player .player-damages {
@@ -82,17 +88,17 @@
 }
 
 .board-square .player-information-popup {
+  font-size: 0.8em;
   z-index: 10;
   position: absolute;
-  bottom: -100px;
-  right: -61px;
+  top: 75px;
+  right: -36px;
   padding: 10px;
-  width: 190px;
-  border: 1px solid #555;
-  background-color: rgba(255,255,255,0.85);
-  box-shadow: 0px 0px 5px #555;
+  width: 140px;
+  border: 1px solid #000;
+  background-color: rgba(52, 64, 58,0.95);
 }
 
 .board-square .player-information-popup p {
-  margin-bottom: 5px;
+  margin-bottom: 0.5em;
 }

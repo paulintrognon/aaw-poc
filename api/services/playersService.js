@@ -14,6 +14,7 @@ module.exports = {
   getAllPlayersInSightOfPlayer,
   createPlayer,
   findPlayer,
+  getScores,
 };
 
 function attack(player, enemy) {
@@ -53,4 +54,16 @@ function createPlayer(information) {
 
 function findPlayer(playerId) {
   return _.find(players, player => player.id === playerId);
+}
+
+function getScores() {
+  const scores = players.map(player => {
+    return {
+      name: player.name,
+      team: player.team,
+      kills: player.kills,
+      deaths: player.deaths,
+    };
+  });
+  return _.orderBy(scores, 'kills', 'desc');
 }

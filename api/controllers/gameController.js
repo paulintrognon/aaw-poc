@@ -3,14 +3,17 @@
 const _ = require('lodash');
 const bluebird = require('bluebird');
 
+const actions = require('../actions');
 const boardService = require('../services/boardService');
 const gameService = require('../services/gameService');
 const playersService = require('../services/playersService');
 const tokenService = require('../services/tokenService');
+const turnsService = require('../services/turnsService');
 
 module.exports = {
   createPlayer,
   fetchPlayer,
+  getScoreBoard,
 };
 
 function createPlayer(req, res) {
@@ -24,7 +27,10 @@ function createPlayer(req, res) {
   }
 
   const player = playersService.createPlayer({ name });
+  turnsService.setupTurnsForPlayer(player);
+
   gameService.spawnPlayer(player);
+  actions.refreshScoreBoard();
 
   const token = tokenService.create(player);
 
@@ -48,5 +54,11 @@ function fetchPlayer(req, res) {
   return {
     player: player.getPrivateProperties(),
     board: boardService.getPlayerBoard(player),
+  };
+}
+
+function getScoreBoard() {
+  return {
+    scoreBoard: playersService.getScores(),
   };
 }

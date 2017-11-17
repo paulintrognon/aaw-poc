@@ -25,3 +25,7 @@ export function moveOwnPlayer(coordinates) {
 export function attack(enemyId) {
   return api.post('/players/own/attack', { enemyId });
 }
+
+export function fetchScoreBoard() {
+  return api.get('/game/score-board');
+}

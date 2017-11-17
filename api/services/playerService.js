@@ -1,7 +1,11 @@
 'use strict';
 
 const _ = require('lodash');
+const moment = require('moment');
 const crypto = require('crypto');
+
+const MAX_PV = 100;
+const MAX_PA = 20;
 
 module.exports = {
   createPlayer,
@@ -11,25 +15,37 @@ function createPlayer(specs) {
   const player = {
     id: specs.id || generateId(),
     name: specs.name,
-    health: specs.health || 100,
+    team: _.sample(['GE', 'AT']),
+    health: specs.health || MAX_PV,
     coordinates: specs.coordinates || {},
     sight: 3,
+    actionPoints: MAX_PA,
+    lastTurnDate: new Date(),
+    nextTurnDate: new Date(),
     weapon: {
       name: 'AK-47',
       range: 2,
       shots: 3,
-      damages: { min: 1, max: 10 },
+      damages: { min: 6, max: 8 },
     },
+    deaths: 0,
+    kills: 0,
   };
   const publicProperties = [
     'id',
     'name',
+    'team',
     'coordinates',
     'weapon',
+    'deaths',
+    'kills',
   ];
   const privateProperties = publicProperties.concat([
     'health',
     'sight',
+    'actionPoints',
+    'lastTurnDate',
+    'nextTurnDate',
   ]);
 
   player.getPublicProperties = getPublicProperties;
@@ -38,6 +54,8 @@ function createPlayer(specs) {
   player.loadSocket = loadSocket;
   player.getCoordinates = getCoordinates;
   player.setCoordinates = setCoordinates;
+  player.fullHealth = fullHealth;
+  player.newTurn = newTurn;
   player.shoot = shoot;
   player.receiveDamages = receiveDamages;
 
@@ -86,6 +104,21 @@ function createPlayer(specs) {
     player.health -= damages;
     if (player.health < 1) {
       player.health = 0;
+    }
+  }
+
+  function fullHealth() {
+    player.health = MAX_PV;
+    player.actionPoints = MAX_PA;
+  }
+
+  function newTurn() {
+    player.lastTurnDate = new Date();
+    player.nextTurnDate = moment().add(2, 'hours').toDate();
+    player.actionPoints = MAX_PA;
+    player.health += 5;
+    if (player.health > MAX_PV) {
+      player.health = MAX_PV;
     }
   }
 }

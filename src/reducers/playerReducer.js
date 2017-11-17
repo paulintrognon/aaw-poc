@@ -30,6 +30,9 @@ function reducer(state = initialState, action) {
         player: action.payload.player,
       };
 
+    case 'OWN_SOLDIER_ATTACKED':
+      return { ...state, player: {...state.player, actionPoints: state.player.actionPoints - 4 } };
+
     case 'SOLDIER_IS_ATTACKING':
       if (action.payload !== state.player.id) {
         return state;
@@ -52,9 +55,8 @@ function reducer(state = initialState, action) {
       }
       return { ...state, player: { ...state.player, health: newHealth } };
 
-    case 'OWN_PLAYER_DIED': {
-      return { ...state, fetched: false, player: null };
-    }
+    case 'OWN_SOLDIER_HAS_KILLED':
+      return { ...state, player: { ...state.player, kills: state.player.kills+1 } };
 
     default:
       return state;

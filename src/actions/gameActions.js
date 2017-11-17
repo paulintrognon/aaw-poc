@@ -1,4 +1,5 @@
 import { createNewPlayer, fetchPlayerFromToken, fetchPlayerBoard, moveOwnPlayer, attack } from '../services/api';
+import { fetchScoreBoardAction } from './scoreBoardActions';
 import socketService from '../services/socket';
 import cookieService from '../services/cookies';
 
@@ -6,6 +7,7 @@ export function createNewPlayerAction(name) {
   return (dispatch) => {
     createNewPlayer(name)
       .then(res => {
+        dispatch(fetchScoreBoardAction());
         dispatch({ type: 'PLAYER_FETCH_FULFILLED', payload: res.data.player });
         dispatch({ type: 'BOARD_FETCH_FULFILLED', payload: res.data.board });
         cookieService.setCookie('aaw_token', res.data.token);
@@ -78,10 +80,14 @@ export function soldierIsAttacking(soldierId) {
 
 export function attackAction(enemyId) {
   return (dispatch) => {
+    dispatch({ type: 'OWN_SOLDIER_ATTACKED' });
     attack(enemyId)
       .then(res => {
         setTimeout(() => {
-          dispatch(damagesTaken(enemyId, res.data.damages))
+          dispatch(damagesTaken(enemyId, res.data.damages));
+          if (res.data.hasKilled) {
+            dispatch({ type: 'OWN_SOLDIER_HAS_KILLED' });
+          }
         }, 1000);
       });
   };
@@ -94,10 +100,4 @@ export function damagesTaken(playerId, damages) {
       dispatch({ type: 'SOLDIER_TAKING_DAMAGES_STOP', payload: playerId });
     }, 2000);
   }
-}
-
-export function ownPlayerDiedAction(playerId) {
-  cookieService.clearCookie('aaw_token');
-  alert('Sorry, you died :(');
-  return { type: 'OWN_PLAYER_DIED' };
 }

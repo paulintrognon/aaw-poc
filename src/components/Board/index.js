@@ -32,8 +32,14 @@ class PlayerInformation extends React.Component {
       return null;
     }
     return (
-      <div>
-        <h2>Board</h2>
+      <div className="board-card card-container">
+        <h2>
+          <span className="board-coordinates">
+            X = {this.props.player.player.coordinates.x},
+            Y = {this.props.player.player.coordinates.y}
+          </span>
+          Plateau
+        </h2>
         <div className="board-container">
           {this.props.board.map((row, x) => (
             <div key={x}>
@@ -42,9 +48,9 @@ class PlayerInformation extends React.Component {
                   <Square
                     key={`${x}/${y}`}
                     square={square}
-                    canWalk={this.props.player.player.health > 0 && !this.props.player.isAttacking}
+                    canWalk={this.props.player.player.actionPoints > 0 && this.props.player.player.health > 0 && !this.props.player.isAttacking}
                     ownPlayerId={this.props.player.player.id}
-                    canAttack={square.player && !this.props.player.isAttacking && square.player.isInRange}
+                    canAttack={square.player && !this.props.player.isAttacking && square.player.isInRange && this.props.player.player.actionPoints >= 4}
                     displayPlayerInformation={this.shouldDisplayPlayerInformation(square.player)}
                     attackHandler={this.attackHandler}
                     >
