@@ -114,7 +114,7 @@ function createPlayer(specs) {
 
   function newTurn() {
     player.lastTurnDate = new Date();
-    player.nextTurnDate = moment().add(2, 'minutes').toDate();
+    player.nextTurnDate = moment().add(2, 'hours').toDate();
     player.actionPoints = MAX_PA;
     player.health += 5;
     if (player.health > MAX_PV) {

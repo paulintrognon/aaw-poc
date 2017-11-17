@@ -1,3 +1,10 @@
+## v2.0.0
+
+- Actions Points now needed for moving & shooting
+- Turns
+- 2 teams : AT & GE
+- Now respawning after death
+
 ## v1.1.0
 
 - Enemies now appear in red
