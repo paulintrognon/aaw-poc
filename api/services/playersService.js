@@ -47,9 +47,10 @@ function getAllPlayersInSightOfPlayer(player, extraRange) {
 }
 
 function createPlayer(information) {
-  const player = playerService.createPlayer(information);
-  players.push(player);
-  return player;
+  information.team = decideTeam();
+  const newPlayer = playerService.createPlayer(information);
+  players.push(newPlayer);
+  return newPlayer;
 }
 
 function findPlayer(playerId) {
@@ -66,4 +67,21 @@ function getScores() {
     };
   });
   return _.orderBy(scores, 'kills', 'desc');
+}
+
+function decideTeam() {
+  const counts = {
+    AT: 0,
+    GE: 0,
+  };
+  players.forEach(player => {
+    counts[player.team]++;
+  });
+  if (counts.AT > counts.GE) {
+    return 'GE';
+  }
+  if (counts.GE > counts.AT) {
+    return 'AT';
+  }
+  return _.sample(['AT', 'GE']);
 }

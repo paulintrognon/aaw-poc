@@ -15,7 +15,7 @@ function createPlayer(specs) {
   const player = {
     id: specs.id || generateId(),
     name: specs.name,
-    team: _.sample(['GE', 'AT']),
+    team: specs.team,
     health: specs.health || MAX_PV,
     coordinates: specs.coordinates || {},
     sight: 3,
