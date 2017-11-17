@@ -1,6 +1,6 @@
 .board-square {
   display: inline-block;
-  width: 70px;
+  width: 85px;
   height: 70px;
   text-align: center;
   vertical-align: bottom;
@@ -50,9 +50,14 @@
   cursor: default;
 }
 
-.board-square.is-enemy .player .player-title-container {
+.board-square.GE .player .player-title-container {
   color: #FFF;
   background-color: #8A0303;
+}
+
+.board-square.AT .player .player-title-container {
+  color: #333;
+  background-color: #EEE;
 }
 
 .board-square .player .player-damages {
