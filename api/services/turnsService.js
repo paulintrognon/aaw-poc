@@ -11,7 +11,7 @@ function setupTurnsForPlayer(player) {
   player.newTurn();
   player.newTurnInterval = setInterval(() => {
     newTurn(player);
-  }, 1000 * 120);
+  }, 1000 * 3600 * 2);
   return player.newTurnInterval;
 }
 
