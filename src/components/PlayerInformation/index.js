@@ -44,9 +44,6 @@ class PlayerInformation extends React.Component {
             <p title={moment(this.props.player.nextTurnDate).format('dddd, Do MMMM YYYY, H:mm:ss')}>
               Prochain tour : <Moment fromNow interval={100}>{this.props.player.nextTurnDate}</Moment>
             </p>
-            <p>
-              {this.props.player.kills} enemis tué(s) / Mort {this.props.player.deaths} fois
-            </p>
           </div>
         </div>
       </div>

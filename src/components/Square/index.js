@@ -36,7 +36,7 @@ class Square extends React.Component {
         classes.push('player-in-range');
       }
       if (square.player.id !== this.props.ownPlayerId) {
-        classes.push('is-enemy');
+        classes.push(square.player.team);
       }
     }
     return (
@@ -56,7 +56,7 @@ class Square extends React.Component {
           <img src={soldierImg} alt={player.name} />
         </p>
         <p className="player-title-container">
-          {player.name}
+          {player.team}-{player.name}
         </p>
         {player.takingDamages === undefined ? '' : (
           <p className="player-damages">

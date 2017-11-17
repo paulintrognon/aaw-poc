@@ -13,3 +13,7 @@
 .create-soldier-form {
   margin-bottom: 30px;
 }
+
+.create-soldier-form input[type="text"] {
+  padding: 5px;
+}

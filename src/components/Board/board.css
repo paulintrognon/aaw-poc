@@ -1,12 +1,12 @@
 .board-card {
-  width: 525px;
+  width: 630px;
 }
 
 .board-container {
   display: inline-block;
   border-top: 1px solid black;
   border-left: 1px solid black;
-  min-width: 490px;
+  min-width: 596px;
 }
 
 .board-card .board-coordinates {

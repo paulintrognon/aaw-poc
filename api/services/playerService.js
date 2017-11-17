@@ -15,6 +15,7 @@ function createPlayer(specs) {
   const player = {
     id: specs.id || generateId(),
     name: specs.name,
+    team: _.sample(['GE', 'AT']),
     health: specs.health || MAX_PV,
     coordinates: specs.coordinates || {},
     sight: 3,
@@ -33,6 +34,7 @@ function createPlayer(specs) {
   const publicProperties = [
     'id',
     'name',
+    'team',
     'coordinates',
     'weapon',
     'deaths',

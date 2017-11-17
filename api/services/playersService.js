@@ -60,6 +60,7 @@ function getScores() {
   const scores = players.map(player => {
     return {
       name: player.name,
+      team: player.team,
       kills: player.kills,
       deaths: player.deaths,
     };
