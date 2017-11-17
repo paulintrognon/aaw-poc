@@ -9,7 +9,7 @@ import './scoreBoard.css'
 function mapStoreToProps(store) {
   return store.scoreBoard;
 }
-class ScoreBoard extends React.Component {
+class PlayersScoreBoard extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchScoreBoardAction());
   }
@@ -36,4 +36,4 @@ class ScoreBoard extends React.Component {
     );
   }
 }
-export default connect(mapStoreToProps)(ScoreBoard);
+export default connect(mapStoreToProps)(PlayersScoreBoard);

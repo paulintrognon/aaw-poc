@@ -2,7 +2,7 @@ import React from 'react';
 
 import PlayerInformation from '../../components/PlayerInformation';
 import Board from '../../components/Board';
-import ScoreBoard from '../../components/ScoreBoard';
+import PlayersScoreBoard from '../../components/PlayersScoreBoard';
 
 class Home extends React.Component {
   render() {
@@ -11,7 +11,7 @@ class Home extends React.Component {
         <div className="col-lg-4 col-12">
           <PlayerInformation></PlayerInformation>
           <div className="d-none d-lg-block">
-            <ScoreBoard></ScoreBoard>
+            <PlayersScoreBoard></PlayersScoreBoard>
           </div>
         </div>
         <div className="col-lg-8 col-12">
