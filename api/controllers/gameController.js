@@ -18,12 +18,22 @@ module.exports = {
 
 function createPlayer(req, res) {
   const name = req.body.name;
+
   if (!name) {
     return bluebird.reject({
       status: 400,
       name: 'name-missing',
       message: 'Cannot create player : missing `name` property',
     });
+  }
+
+  const oldPlayer = playersService.findPlayerByName(name);
+  if (oldPlayer) {
+    return {
+      token: tokenService.create(oldPlayer),
+      player: oldPlayer.getPrivateProperties(),
+      board: boardService.getPlayerBoard(oldPlayer),
+    }
   }
 
   const player = playersService.createPlayer({ name });

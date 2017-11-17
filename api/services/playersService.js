@@ -14,6 +14,7 @@ module.exports = {
   getAllPlayersInSightOfPlayer,
   createPlayer,
   findPlayer,
+  findPlayerByName,
   getScores,
 };
 
@@ -55,6 +56,10 @@ function createPlayer(information) {
 
 function findPlayer(playerId) {
   return _.find(players, player => player.id === playerId);
+}
+
+function findPlayerByName(playerName) {
+  return _.find(players, player => player.name.toLowerCase() === playerName.toLowerCase());
 }
 
 function getScores() {
