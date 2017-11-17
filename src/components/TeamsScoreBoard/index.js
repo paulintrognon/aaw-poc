@@ -49,7 +49,6 @@ class PlayersScoreBoard extends React.Component {
     }
     return (
       <div className="score-board-container card-container">
-        <h2>Scores</h2>
         {teams.length ? this.renderContent(teams) : this.renderLoading()}
       </div>
     );

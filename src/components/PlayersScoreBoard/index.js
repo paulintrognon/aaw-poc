@@ -25,12 +25,11 @@ class PlayersScoreBoard extends React.Component {
   }
 
   render() {
-    if (!this.props.fetching && !this.props.list) {
+    if (!this.props.fetching && !this.props.list || this.props.list && this.props.list.length === 0) {
       return null;
     }
     return (
       <div className="score-board-container card-container">
-        <h2>Scores</h2>
         {this.props.list ? this.renderContent(this.props.list) : this.renderLoading()}
       </div>
     );
