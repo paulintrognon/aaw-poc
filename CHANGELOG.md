@@ -1,3 +1,7 @@
+## v2.1.0
+
+- Teams now more equilibrate (not random)
+
 ### v2.0.1
 
 - Fix eslint warning
