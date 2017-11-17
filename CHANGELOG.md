@@ -1,4 +1,8 @@
-## v2.0.0
+### v2.0.1
+
+- Fix eslint warning
+
+# v2.0.0
 
 - Actions Points now needed for moving & shooting
 - Turns
