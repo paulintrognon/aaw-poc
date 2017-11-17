@@ -5,9 +5,6 @@ export default function ScoreBoardTable(props) {
     <thead>
       <tr>
         <th>
-          Nom
-        </th>
-        <th>
           Équipe
         </th>
         <th>
@@ -16,22 +13,25 @@ export default function ScoreBoardTable(props) {
         <th>
           Morts
         </th>
+        <th>
+          Diff
+        </th>
       </tr>
     </thead>
     <tbody>
       {
-        props.players.map((player, i) => (<tr key={i}>
+        props.teams.map((team, i) => (<tr key={i}>
           <td>
-            {player.name}
+            {team.name}
           </td>
           <td>
-            {player.team}
+            {team.kills}
           </td>
           <td>
-            {player.kills}
+            {team.deaths}
           </td>
           <td>
-            {player.deaths}
+            {team.diff}
           </td>
         </tr>))
       }
