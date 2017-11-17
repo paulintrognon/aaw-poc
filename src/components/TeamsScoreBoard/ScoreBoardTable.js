@@ -31,7 +31,7 @@ export default function ScoreBoardTable(props) {
             {team.deaths}
           </td>
           <td>
-            {team.diff}
+            {team.diff > 0 ? `+${team.diff}` : team.diff}
           </td>
         </tr>))
       }

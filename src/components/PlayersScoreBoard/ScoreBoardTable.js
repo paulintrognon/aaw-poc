@@ -21,7 +21,7 @@ export default function ScoreBoardTable(props) {
     <tbody>
       {
         props.players.map((player, i) => (<tr key={i}>
-          <td>
+          <td style={{wordWrap: 'break-word', maxWidth: '125px'}}>
             {player.name}
           </td>
           <td>
