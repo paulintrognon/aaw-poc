@@ -1,3 +1,8 @@
+## v2.2.0
+
+- Players can reclaim their player by loggin with the same name
+- Some bug fixes
+
 ## v2.1.0
 
 - Teams now more equilibrate (not random)
